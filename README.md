@@ -7,35 +7,21 @@ sudo apt-get update
 sudo apt-get install emacs24 emacs24-el emacs24-common-non-dfsg
 ```
 
-### clone this dotfile and link it
-
-``` bash
-cd ~
-git clone https://github.com/iamdionysus/dotfiles.git
-cd ~/dotfiles
-./linkit
-```
-
 ### install emacs packages
 M-x list-packages and search packages names (C-s), check=(i), and execute to install(x)
 
 ### Emacs packages used
-#### Look and feel
 * color-theme-solarized
-
-#### Improve default
-* smex: better M-x
-* multi-term: better shell
-
-#### better file/buffer navigation
-* helm: helm-mini is useful to navigate buffers and Recentf is nice
-* projectile : project based file navigation with fuzzy search
-
-#### programming envrionment
-* inf-ruby: ruby REPL
-* robe: ruby IDE like features such as "go to definition", "open documentation"
+* smex : better M-x
+* multi-term: better shell, not for windows
 * auto-complete
 * smartparens
+* helm: helm-mini is useful to navigate buffers and Recentf is nice
+* projectile : project based file navigation with fuzzy search
+* helm-projectile
+* projectile-rails
+* inf-ruby: ruby REPL
+* robe: ruby IDE like features such as "go to definition", "open documentation"
 
 ## Issues and solution
 ### rvm complains my zsh version
