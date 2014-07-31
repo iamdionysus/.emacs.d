@@ -231,6 +231,14 @@
 ;; -- setups for windows
 (set-face-attribute 'default nil :font "Consolas-12")
 (set-language-environment "UTF-8")
+;;(setq initial-frame-alist '((left . 0) (top . 50)))
+(when window-system
+  (add-to-list 'initial-frame-alist '(height . 50))
+  (add-to-list 'initial-frame-alist '(width . 120))
+  (add-to-list 'initial-frame-alist '(left . 0))
+  (add-to-list 'initial-frame-alist '(top . 50))
+)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; after loading settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
