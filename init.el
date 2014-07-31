@@ -228,8 +228,9 @@
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
 
-;; -- windows font
+;; -- setups for windows
 (set-face-attribute 'default nil :font "Consolas-12")
+(set-language-environment "UTF-8")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; after loading settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
