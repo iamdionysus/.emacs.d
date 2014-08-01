@@ -31,7 +31,7 @@
 ;; shortcuts for productivity
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; better enter
-(global-set-key (kbd "RET") 'newline-and-indent)
+;;(global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; better deletion
 (global-set-key (kbd "C-w") 'backward-kill-word)
@@ -229,14 +229,14 @@
 (setq ido-use-faces nil)
 
 ;; -- setups for windows
-(set-face-attribute 'default nil :font "Consolas-12")
-(set-language-environment "UTF-8")
-;;(setq initial-frame-alist '((left . 0) (top . 50)))
 (when window-system
   (add-to-list 'initial-frame-alist '(height . 50))
   (add-to-list 'initial-frame-alist '(width . 120))
   (add-to-list 'initial-frame-alist '(left . 0))
   (add-to-list 'initial-frame-alist '(top . 50))
+  (set-language-environment "UTF-8")
+  (set-face-attribute 'default nil :font "Consolas-12")
+  (global-set-key [C-kanji] 'set-mark-command)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
