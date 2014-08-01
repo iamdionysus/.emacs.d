@@ -18,6 +18,9 @@ M-x list-packages and search packages names (C-s), check=(i), and execute to ins
 * smartparens
 * helm: helm-mini is useful to navigate buffers and Recentf is nice
 * projectile : project based file navigation with fuzzy search
+* projectile-rails
+* flycheck
+* flx-ido
 * helm-projectile
 * projectile-rails
 * inf-ruby: ruby REPL
