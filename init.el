@@ -27,11 +27,21 @@
 )
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+
+;; no backup file ~
+(setq make-backup-files nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; shortcuts for productivity
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; better enter
 ;;(global-set-key (kbd "RET") 'newline-and-indent)
+
+;; buffer-move
+(global-set-key (kbd "C-c <up>")     'buf-move-up)
+(global-set-key (kbd "C-c <down>")   'buf-move-down)
+(global-set-key (kbd "C-c <left>")   'buf-move-left)
+(global-set-key (kbd "C-c <right>")  'buf-move-right)
+
 
 ;; better deletion
 (global-set-key (kbd "C-w") 'backward-kill-word)
@@ -110,7 +120,7 @@
 
 ;; -- ruby settings: inf-ruby
 (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
-
+(setq enh-ruby-check-syntax 'nil)
 
 ;; -- ruby settigns: robe
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
@@ -231,12 +241,15 @@
 ;; -- setups for windows
 (when window-system
   (add-to-list 'initial-frame-alist '(height . 50))
-  (add-to-list 'initial-frame-alist '(width . 120))
+  (add-to-list 'initial-frame-alist '(width . 180))
   (add-to-list 'initial-frame-alist '(left . 0))
   (add-to-list 'initial-frame-alist '(top . 50))
   (set-language-environment "UTF-8")
   (set-face-attribute 'default nil :font "Consolas-12")
   (global-set-key [C-kanji] 'set-mark-command)
+  (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
+  (setq ispell-program-name "aspell")
+  (setq ispell-personal-dictionary "C:/Program Files (x86)/Aspell/dict")
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

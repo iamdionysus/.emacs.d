@@ -25,6 +25,9 @@ M-x list-packages and search packages names (C-s), check=(i), and execute to ins
 * projectile-rails
 * inf-ruby: ruby REPL
 * robe: ruby IDE like features such as "go to definition", "open documentation"
+* enh-ruby-mode: enhanced ruby mode
+* ruby-tools: change " to ' easily
+* ruby-compilation: execute ruby processes and dumping the results into a compilation buffer. 
 
 ## Issues and solution
 ### rvm complains my zsh version
