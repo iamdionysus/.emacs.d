@@ -1,27 +1,42 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; MELPA setting
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; init.el --- sets my style
+
+;;; Commentary:
+;;
+;; this file is to set up my own Emacs environment
+;; both linux and windows
+
+;;; Code:
+
+;;; MELPA settgins
+;;
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; before loading everything else
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'cl) ;; Commonn-lisp compatibility 
+
+
+;;; Commonn-lisp compatibility
+;;
+(with-no-warnings
+  (require 'cl))
+
+;;; Look and feel
+;;
 (load-theme 'solarized-dark t) ;; solarized theme
 (menu-bar-mode -1) ;; no menu bar
 (tool-bar-mode -1) ;; no tool bar
 
-;; compilation buffer set up
-;; automatically go to bottom of the compilation buffer
+;;; compilation buffer set up
+;;; automatically go to bottom of the compilation buffer
+;;
 (setq compilation-scroll-output t) 
 
-;; fix ansi color break on compilation buffer
+;;; fix ansi color break on compilation buffer
+;;
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
-  (toggle-read-only)
+  (read-only-mode)
   (ansi-color-apply-on-region (point-min) (point-max))
   (toggle-read-only)
 )
@@ -62,6 +77,15 @@
 ;; -- load-file
 (global-set-key (kbd "C-x C-l") 'load-file)
 
+;; dired moving to parent directory
+(put 'dired-find-alternate-file 'disabled nil)
+(add-hook 'dired-mode-hook
+ (lambda ()
+  (define-key dired-mode-map (kbd "^")
+    (lambda () (interactive) (find-alternate-file "..")))
+  ; was dired-up-directory
+))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; each packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -69,7 +93,6 @@
 (global-set-key (kbd "C-x C-m") 'smex)
 (global-set-key (kbd "C-c C-m") 'smex)
 (global-set-key (kbd "C-c m") 'smex) ;; even more generous for sloppy finger
-(global-set-key (kbd "C-x m") 'smex) ;; even more generous for sloppy finger
 
 
 ;; multi-term
@@ -196,8 +219,7 @@
 (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode-keys)
 
 ;; -- helm
-(global-set-key (kbd "C-x h") 'helm-mini)
-(global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "C-x m") 'helm-mini)
 (global-set-key (kbd "C-x f") 'helm-projectile)
 (global-set-key (kbd "C-c f") 'helm-projectile)
 (global-set-key (kbd "C-x C-d") 'helm-find-files)
@@ -268,3 +290,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; init.el ends here
