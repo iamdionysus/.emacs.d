@@ -4,6 +4,7 @@
 ;;
 ;; this file is to set up my own Emacs environment
 ;; both linux and windows
+;; recently started to use use-package to install package automatically
 
 ;;; Code:
 
@@ -15,11 +16,15 @@
 (package-initialize)
 
 
-
 ;;; Commonn-lisp compatibility
 ;;
 (with-no-warnings
   (require 'cl))
+
+
+;;; require use-package 
+;;
+(require 'use-package)
 
 ;;; Look and feel
 ;;
@@ -27,10 +32,7 @@
 (menu-bar-mode -1) ;; no menu bar
 (tool-bar-mode -1) ;; no tool bar
 
-;;; compilation buffer set up
-;;; automatically go to bottom of the compilation buffer
-;;
-(setq compilation-scroll-output t) 
+(setq compilation-scroll-output t)  ;; automatically go to bottom of the compilation buffer
 
 ;;; fix ansi color break on compilation buffer
 ;;
@@ -43,27 +45,31 @@
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 
-;; no backup file ~
-(setq make-backup-files nil)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; shortcuts for productivity
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; better enter
-;;(global-set-key (kbd "RET") 'newline-and-indent)
+(setq make-backup-files nil) ;; no backup file ~
 
-;; buffer-move
+
+
+;;; shortcuts for productivity
+;;
+
+;;(global-set-key (kbd "RET") 'newline-and-indent) ;; better enter
+
+;;; buffer-move
+;;
 (global-set-key (kbd "C-c <up>")     'buf-move-up)
 (global-set-key (kbd "C-c <down>")   'buf-move-down)
 (global-set-key (kbd "C-c <left>")   'buf-move-left)
 (global-set-key (kbd "C-c <right>")  'buf-move-right)
 
 
-;; better deletion
+;;; better deletion
+;;
 (global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-c C-k") 'kill-region)
 
-;; -- manage window splits easily
+;;; manage window splits easily
+;;
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x \\") 'split-window-right)
 (global-set-key (kbd "C-M-o") 'other-window)
@@ -96,8 +102,17 @@
 
 
 ;; multi-term
-(global-set-key (kbd "C-M-t") 'multi-term)
+(if (eq system-type 'gnu/linux)
+  (use-package multi-term
+    :bind (("C-M-t" . multi-term))
+    :ensure t)
+)
+;; (global-set-key (kbd "C-M-t") 'multi-term)
 
+;; magit
+(use-package magit
+  :bind ("C-x g" . magit-status)
+  :ensure t)
 
 ;; -- flycheck settings
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -147,7 +162,7 @@
 
 ;; -- ruby settigns: robe
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
-(add-hook 'robe-mode-hook 'auto-complete-mode)
+;; (add-hook 'robe-mode-hook 'auto-complete-mode)
 
 
 ;; -- ruby enh-ruby-mode compile/run/debug settings
@@ -235,7 +250,21 @@
 ;; (require 'smartparens-config)
 
 ;; -- auto-complete
-(global-auto-complete-mode t)
+;; (global-auto-complete-mode t)		
+
+;;; company-mode
+;;
+(use-package company
+  :init
+  (progn
+      (add-hook 'after-init-hook 'global-company-mode)
+      (eval-after-load 'company
+	'(add-to-list 'company-backends 'company-inf-ruby))
+      (eval-after-load 'company
+	'(push 'company-robe company-backends)))
+  :bind
+  (("M-SPC" . company-complete-common))
+  :ensure t)
 
 
 ;; -- web-mode
@@ -277,18 +306,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; after loading settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
- '(quack-programs (quote ("/usr/bin/mit-scheme" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "mzscheme" "racket" "racket -il typed/racket" "rs" "ruby" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
+;;  '(quack-programs (quote ("/usr/bin/mit-scheme" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "mzscheme" "racket" "racket -il typed/racket" "rs" "ruby" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi"))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 
 ;;; init.el ends here
