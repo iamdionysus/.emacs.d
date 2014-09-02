@@ -91,11 +91,16 @@
 
 ;;; multi-term
 ;;
-(if (eq system-type 'gnu/linux)
-  (use-package multi-term
-    :bind (("C-M-t" . multi-term))
-    :ensure t)
-)
+;; (if (eq system-type 'gnu/linux)
+;;   (use-package multi-term
+;;     :bind (("C-M-t" . multi-term))
+;;     :ensure t)
+;; )
+;; use-package way of checking the system
+(use-package multi-term
+  :if (not window-system)
+  :bind (("C-M-t" . multi-term))
+  :ensure t)
 
 ;;; magit
 ;;
@@ -104,8 +109,13 @@
   :ensure t)
 
 ;; -- flycheck settings
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(setq flycheck-check-syntax-automatically '(save))
+(use-package flycheck
+  :init
+  (progn
+     (add-hook 'after-init-hook #'global-flycheck-mode)
+     (setq flycheck-check-syntax-automatically '(save))
+     (add-hook 'flycheck-mode-hook 'flycheck-mode-keys))
+  :ensure t)
 
 (defun flycheck-buffer-and-list-errors()
   "execute command flycheck-buffer and flycheck-list-errors"
@@ -119,29 +129,28 @@
   "key map for flycheck-mode"
   (local-set-key (kbd "<f7>") 'flycheck-buffer-and-list-errors)
 )
-(add-hook 'flycheck-mode-hook 'flycheck-mode-keys)
 
 
 ;; -- haskell-mode settings
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;; ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
-(setq haskell-hoogle-command "hoogle")
+;; (setq haskell-hoogle-command "hoogle")
 
-(defun haskell-process-load-and-jump()
-  "run haskell-process-load-or-reload and move to other window"
-  (interactive)
-  (haskell-process-load-or-reload)
-  (other-window 1)
-)
+;; (defun haskell-process-load-and-jump()
+;;   "run haskell-process-load-or-reload and move to other window"
+;;   (interactive)
+;;   (haskell-process-load-or-reload)
+;;   (other-window 1)
+;; )
 
-(defun haskell-mode-keys()
-  "key map for haskell-mode"
-  (local-set-key (kbd "<f5>") 'haskell-process-load-and-jump)
-  (local-set-key (kbd "<f6>") 'flycheck-buffer-and-list-errors)
-)
-(add-hook 'haskell-mode-hook 'haskell-mode-keys)
+;; (defun haskell-mode-keys()
+;;   "key map for haskell-mode"
+;;   (local-set-key (kbd "<f5>") 'haskell-process-load-and-jump)
+;;   (local-set-key (kbd "<f6>") 'flycheck-buffer-and-list-errors)
+;; )
+;; (add-hook 'haskell-mode-hook 'haskell-mode-keys)
 
 
 
@@ -223,10 +232,18 @@
 (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode-keys)
 
 ;; -- helm
-(global-set-key (kbd "C-x m") 'helm-mini)
-(global-set-key (kbd "C-x f") 'helm-projectile)
-(global-set-key (kbd "C-c f") 'helm-projectile)
-(global-set-key (kbd "C-x C-d") 'helm-find-files)
+(use-package helm
+  :bind (("C-x m" . helm-mini)
+	 ("C-x f" . helm-projectile)
+	 ("C-x C-d" . helm-find-files))
+  :ensure t)
+
+(use-package helm-projectile
+  :ensure t)
+;; (global-set-key (kbd "C-x m") 'helm-mini)
+;; (global-set-key (kbd "C-x f") 'helm-projectile)
+;; (global-set-key (kbd "C-c f") 'helm-projectile)
+;; (global-set-key (kbd "C-x C-d") 'helm-find-files)
 
 ;; -- projectile
 (projectile-global-mode)
@@ -257,27 +274,41 @@
 
 
 ;; -- web-mode
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-
+(use-package web-mode
+  :init
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  )
+  :ensure t
+)
 ;; -- emmet-mode
-(add-hook 'html-mode-hook 'emmet-mode)
-(add-hook 'web-mode-hook 'emmet-mode)
-
+(use-package emmet-mode
+  :init
+  (progn
+    (add-hook 'html-mode-hook 'emmet-mode)
+    (add-hook 'web-mode-hook 'emmet-mode))
+  :ensure t
+)
 
 ;; -- flx-ido
-(require 'flx-ido)
-(ido-mode t)
-(ido-everywhere t)
-(flx-ido-mode t)
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-
+(use-package flx-ido
+  :init
+  (progn
+    (require 'flx-ido)
+    (ido-mode t)
+    (ido-everywhere t)
+    (flx-ido-mode t)
+    (setq ido-enable-flex-matching t)
+    (setq ido-use-faces nil)
+  )
+  :ensure t
+)
 ;; -- setups for windows
 (when window-system
   (add-to-list 'initial-frame-alist '(height . 50))
