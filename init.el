@@ -21,8 +21,7 @@
 (with-no-warnings
   (require 'cl))
 
-
-;;; require use-package 
+;;; require use-package
 ;;
 (require 'use-package)
 
@@ -31,27 +30,22 @@
 (load-theme 'solarized-dark t) ;; solarized theme
 (menu-bar-mode -1) ;; no menu bar
 (tool-bar-mode -1) ;; no tool bar
-
 (setq compilation-scroll-output t)  ;; automatically go to bottom of the compilation buffer
+(setq make-backup-files nil) ;; no backup file ~
 
 ;;; fix ansi color break on compilation buffer
 ;;
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  (read-only-mode)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only)
-)
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-
-
-(setq make-backup-files nil) ;; no backup file ~
-
+;; (require 'ansi-color)
+;; (defun colorize-compilation-buffer ()
+;;   (read-only-mode)
+;;   (ansi-color-apply-on-region (point-min) (point-max))
+;;   (toggle-read-only)
+;; )
+;; (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 
 ;;; shortcuts for productivity
 ;;
-
 ;;(global-set-key (kbd "RET") 'newline-and-indent) ;; better enter
 
 ;;; buffer-move
@@ -66,7 +60,6 @@
 ;;
 (global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-x C-k") 'kill-region)
-(global-set-key (kbd "C-c C-k") 'kill-region)
 
 ;;; manage window splits easily
 ;;
@@ -79,11 +72,10 @@
 (global-set-key (kbd "C-M-k") 'shrink-window)
 (global-set-key (kbd "C-M-j") 'enlarge-window)
 
-
-;; -- load-file
+;; load-file
 (global-set-key (kbd "C-x C-l") 'load-file)
 
-;; dired moving to parent directory
+;; dired moving to parent directory without opening a new buffer
 (put 'dired-find-alternate-file 'disabled nil)
 (add-hook 'dired-mode-hook
  (lambda ()
@@ -92,24 +84,21 @@
   ; was dired-up-directory
 ))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; each packages
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; smex
+
+;;; smex
+;;
 (global-set-key (kbd "C-x C-m") 'smex)
-(global-set-key (kbd "C-c C-m") 'smex)
-(global-set-key (kbd "C-c m") 'smex) ;; even more generous for sloppy finger
 
-
-;; multi-term
+;;; multi-term
+;;
 (if (eq system-type 'gnu/linux)
   (use-package multi-term
     :bind (("C-M-t" . multi-term))
     :ensure t)
 )
-;; (global-set-key (kbd "C-M-t") 'multi-term)
 
-;; magit
+;;; magit
+;;
 (use-package magit
   :bind ("C-x g" . magit-status)
   :ensure t)
@@ -303,21 +292,5 @@
   (setq ispell-personal-dictionary "C:/Program Files (x86)/Aspell/dict")
 )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; after loading settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
-;;  '(quack-programs (quote ("/usr/bin/mit-scheme" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "mzscheme" "racket" "racket -il typed/racket" "rs" "ruby" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi"))))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
 
 ;;; init.el ends here
