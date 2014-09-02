@@ -87,7 +87,10 @@
 
 ;;; smex
 ;;
-(global-set-key (kbd "C-x C-m") 'smex)
+(use-package smex
+  :bind (("C-x C-m" . smex))
+  :ensure t)
+
 
 ;;; multi-term
 ;;
