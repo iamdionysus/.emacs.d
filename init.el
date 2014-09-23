@@ -253,8 +253,10 @@
   :init
   (progn
     (projectile-global-mode)
+  )
   :bind (("C-x p" . projectile-find-file))
-  :ensure t)
+  :ensure t
+)
 
 ;; -- smartparens
 ;; (smartparens-global-mode t)
