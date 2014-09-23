@@ -253,7 +253,6 @@
   :init
   (progn
     (projectile-global-mode)
-    (add-hook 'projectile-mode-hook 'projectile-rails-on))
   :bind (("C-x p" . projectile-find-file))
   :ensure t)
 
