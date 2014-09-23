@@ -249,10 +249,13 @@
 ;; (global-set-key (kbd "C-x C-d") 'helm-find-files)
 
 ;; -- projectile
-(projectile-global-mode)
-(add-hook 'projectile-mode-hook 'projectile-rails-on)
-(global-set-key (kbd "C-x p") 'projectile-find-file)
-(global-set-key (kbd "C-c p") 'projectile-find-file)
+(use-package projectile
+  :init
+  (progn
+    (projectile-global-mode)
+    (add-hook 'projectile-mode-hook 'projectile-rails-on))
+  :bind (("C-x p" . projectile-find-file))
+  :ensure t)
 
 ;; -- smartparens
 ;; (smartparens-global-mode t)
