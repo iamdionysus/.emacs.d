@@ -258,6 +258,13 @@
   :ensure t
 )
 
+
+;; -- projectile-rails
+(use-package projectile-rails
+  :init
+  (add-hook 'projectile-mode-hook 'projectile-rails-on)
+  :ensure t
+)
 ;; -- smartparens
 ;; (smartparens-global-mode t)
 ;; (require 'smartparens-config)
@@ -316,6 +323,8 @@
   )
   :ensure t
 )
+
+
 ;; -- setups for windows
 (when window-system
   (add-to-list 'initial-frame-alist '(height . 50))
