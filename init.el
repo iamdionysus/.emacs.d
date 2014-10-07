@@ -27,7 +27,7 @@
 
 ;;; Look and feel
 ;;
-(load-theme 'solarized-dark t) ;; solarized theme
+
 (menu-bar-mode -1) ;; no menu bar
 (tool-bar-mode -1) ;; no tool bar
 (setq compilation-scroll-output t)  ;; automatically go to bottom of the compilation buffer
@@ -85,11 +85,21 @@
 ))
 
 
+;; solarized-dark
+
+(use-package color-theme-solarized
+  :defer t
+  :init
+  (load-theme 'solarized-dark t)
+  :ensure t
+)
+
 ;;; smex
 ;;
 (use-package smex
   :bind (("C-x C-m" . smex))
-  :ensure t)
+  :ensure t
+)
 
 
 ;;; multi-term
@@ -103,13 +113,15 @@
 (use-package multi-term
   :if (not window-system)
   :bind (("C-M-t" . multi-term))
-  :ensure t)
+  :ensure t
+)
 
 ;;; magit
 ;;
 (use-package magit
   :bind ("C-x g" . magit-status)
-  :ensure t)
+  :ensure t
+)
 
 ;; -- flycheck settings
 (use-package flycheck
@@ -341,3 +353,15 @@
 
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
