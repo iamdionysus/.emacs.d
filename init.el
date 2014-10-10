@@ -50,11 +50,15 @@
 
 ;;; buffer-move
 ;;
-(global-set-key (kbd "C-c <up>")     'buf-move-up)
-(global-set-key (kbd "C-c <down>")   'buf-move-down)
-(global-set-key (kbd "C-c <left>")   'buf-move-left)
-(global-set-key (kbd "C-c <right>")  'buf-move-right)
-
+(use-package buffer-move
+  :bind(
+	("C-c <up>" . buf-move-up)
+	("C-c <down>" . buf-move-down)
+	("C-c <left>" . buf-move-left)
+	("C-c <right>" . buf-move-right)
+	)
+  :ensure t
+)
 
 ;;; better deletion
 ;;
@@ -336,6 +340,11 @@
   :ensure t
 )
 
+
+;;; markdown-mode
+(use-package markdown-mode
+  :ensure t
+)
 
 ;; -- setups for windows
 (when window-system

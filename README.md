@@ -7,27 +7,9 @@ sudo apt-get update
 sudo apt-get install emacs24 emacs24-el emacs24-common-non-dfsg
 ```
 
-### install emacs packages
-M-x list-packages and search packages names (C-s), check=(i), and execute to install(x)
+### install use-package
+After emacs installation and run emacs, we will have some issue with initiallizing with init.el. Do M-x package-install and install use-package. Close emacs and run again. All the package needed will be installed automatically.
 
-### Emacs packages used
-* color-theme-solarized
-* smex : better M-x
-* multi-term: better shell, not for windows
-* auto-complete
-* smartparens
-* helm: helm-mini is useful to navigate buffers and Recentf is nice
-* projectile : project based file navigation with fuzzy search
-* projectile-rails
-* flycheck
-* flx-ido
-* helm-projectile
-* projectile-rails
-* inf-ruby: ruby REPL
-* robe: ruby IDE like features such as "go to definition", "open documentation"
-* enh-ruby-mode: enhanced ruby mode
-* ruby-tools: change " to ' easily
-* ruby-compilation: execute ruby processes and dumping the results into a compilation buffer. 
 
 ## Issues and solution
 ### rvm complains my zsh version
