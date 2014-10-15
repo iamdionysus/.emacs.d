@@ -76,10 +76,12 @@
 (global-set-key (kbd "C-M-k") 'shrink-window)
 (global-set-key (kbd "C-M-j") 'enlarge-window)
 
-;; load-file
+;;; load-file
+;;
 (global-set-key (kbd "C-x C-l") 'load-file)
 
-;; dired moving to parent directory without opening a new buffer
+;;; dired moving to parent directory without opening a new buffer
+;;
 (put 'dired-find-alternate-file 'disabled nil)
 (add-hook 'dired-mode-hook
  (lambda ()
@@ -89,8 +91,8 @@
 ))
 
 
-;; solarized-dark
-
+;;; solarized-dark
+;;
 (use-package color-theme-solarized
   :defer t
   :init
@@ -127,7 +129,8 @@
   :ensure t
 )
 
-;; -- flycheck settings
+;;; flycheck settings
+;;
 (use-package flycheck
   :init
   (progn
@@ -152,42 +155,41 @@
 )
 
 
-;; -- haskell-mode settings
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-;; ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
-;; (setq haskell-hoogle-command "hoogle")
-
-;; (defun haskell-process-load-and-jump()
-;;   "run haskell-process-load-or-reload and move to other window"
-;;   (interactive)
-;;   (haskell-process-load-or-reload)
-;;   (other-window 1)
-;; )
-
-;; (defun haskell-mode-keys()
-;;   "key map for haskell-mode"
-;;   (local-set-key (kbd "<f5>") 'haskell-process-load-and-jump)
-;;   (local-set-key (kbd "<f6>") 'flycheck-buffer-and-list-errors)
-;; )
-;; (add-hook 'haskell-mode-hook 'haskell-mode-keys)
-
-
-
-;; -- ruby settings: inf-ruby
+;;; ruby settings: enh-ruby-mode
+;;
 (use-package enh-ruby-mode
-  :init (progn
+  :init 
+  (progn
     (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
     (setq enh-ruby-check-syntax 'nil)
     (add-to-list 'auto-mode-alist '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . enh-ruby-mode))
     (add-to-list 'auto-mode-alist '("\\(Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . enh-ruby-mode))
-
+  )
+  :bind(
+    ("<f2>" . inf-ruby)
+    ("<f5>" . inf-ruby-and-load-file)
+    ("<f6>" . ruby-save-compile-this-buffer)
+    ("<f9>" . toggle-breakpoint)
+    ("<f10>" . delete-all-breakpoint)
+    ("C-\\" . ruby-send-last-sexp)
   )
   :ensure t
 )
+(defun enh-ruby-mode-keys()
+  "key maps for enh-ruby-mode only"
+  (local-set-key (kbd "<f2>") 'inf-ruby)
+  (local-set-key (kbd "<f5>") 'inf-ruby-and-load-file)
+  (local-set-key (kbd "<f6>") 'ruby-save-compile-this-buffer)
+  (local-set-key (kbd "<f9>") 'toggle-breakpoint)
+  (local-set-key (kbd "<f10>") 'delete-all-breakpoint)
+  (local-set-key (kbd "C-\\") 'ruby-send-last-sexp)
+)
+ 
+(add-hook 'enh-ruby-mode-hook 'enh-ruby-mode-keys)
 
-;; -- ruby settigns: robe
+
+;;; ruby settigns: robe
+;;
 (use-package robe
   :init (add-hook 'enh-ruby-mode-hook 'robe-mode)
   :ensure t
@@ -195,8 +197,6 @@
   
 
 ;; -- ruby enh-ruby-mode compile/run/debug settings
-
-
 (defun inf-ruby-and-load-file()
   "execute command inf-ruby and ruby-load-file"
   (interactive)
@@ -234,18 +234,6 @@
   )
 )
 
-(defun enh-ruby-mode-keys()
-  "key maps for enh-ruby-mode only"
-  (local-set-key (kbd "<f2>") 'inf-ruby)
-  (local-set-key (kbd "<f5>") 'inf-ruby-and-load-file)
-  (local-set-key (kbd "<f6>") 'ruby-save-compile-this-buffer)
-  (local-set-key (kbd "<f9>") 'toggle-breakpoint)
-  (local-set-key (kbd "<f10>") 'delete-all-breakpoint)
-  (local-set-key (kbd "C-\\") 'ruby-send-last-sexp)
-)
- 
-(add-hook 'enh-ruby-mode-hook 'enh-ruby-mode-keys)
-
 
 ;; ;; -- ruby: ruby-tools-mode
 ;; (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
@@ -258,7 +246,8 @@
 ;; )
 ;; (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode-keys)
 
-;; -- helm
+;;; helm
+;;
 (use-package helm
   :bind (
     ("C-x m" . helm-mini)
@@ -267,15 +256,14 @@
   :ensure t
 )
 
+;;; helm-projectile
+;;
 (use-package helm-projectile
   :ensure t
 )
-;; (global-set-key (kbd "C-x m") 'helm-mini)
-;; (global-set-key (kbd "C-x f") 'helm-projectile)
-;; (global-set-key (kbd "C-c f") 'helm-projectile)
-;; (global-set-key (kbd "C-x C-d") 'helm-find-files)
 
-;; -- projectile
+;;; projectile
+;;
 (use-package projectile
   :init
   (progn
@@ -286,18 +274,13 @@
 )
 
 
-;; -- projectile-rails
+;;; projectile-rails
+;;
 (use-package projectile-rails
   :init
   (add-hook 'projectile-mode-hook 'projectile-rails-on)
   :ensure t
 )
-;; -- smartparens
-;; (smartparens-global-mode t)
-;; (require 'smartparens-config)
-
-;; -- auto-complete
-;; (global-auto-complete-mode t)		
 
 ;;; company-mode
 ;;
@@ -314,7 +297,8 @@
   :ensure t)
 
 
-;; -- web-mode
+;;; web-mode
+;;
 (use-package web-mode
   :init
   (progn
@@ -328,7 +312,9 @@
   )
   :ensure t
 )
-;; -- emmet-mode
+
+;;; emmet-mode
+;;
 (use-package emmet-mode
   :init
   (progn
@@ -337,7 +323,8 @@
   :ensure t
 )
 
-;; -- flx-ido
+;;; flx-ido
+;;
 (use-package flx-ido
   :init
   (progn
@@ -353,11 +340,13 @@
 
 
 ;;; markdown-mode
+;;
 (use-package markdown-mode
   :ensure t
 )
 
-;; -- setups for windows
+;;; setups for windows
+;;
 (when window-system
   (add-to-list 'initial-frame-alist '(height . 50))
   (add-to-list 'initial-frame-alist '(width . 180))
@@ -370,6 +359,27 @@
   (setq ispell-program-name "aspell")
   (setq ispell-personal-dictionary "C:/Program Files (x86)/Aspell/dict")
 )
+
+;;; haskell-mode settings
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;; ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+;; (setq haskell-hoogle-command "hoogle")
+
+;; (defun haskell-process-load-and-jump()
+;;   "run haskell-process-load-or-reload and move to other window"
+;;   (interactive)
+;;   (haskell-process-load-or-reload)
+;;   (other-window 1)
+;; )
+
+;; (defun haskell-mode-keys()
+;;   "key map for haskell-mode"
+;;   (local-set-key (kbd "<f5>") 'haskell-process-load-and-jump)
+;;   (local-set-key (kbd "<f6>") 'flycheck-buffer-and-list-errors)
+;; )
+;; (add-hook 'haskell-mode-hook 'haskell-mode-keys)
 
 
 ;;; init.el ends here
