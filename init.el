@@ -133,8 +133,10 @@
   (progn
      (add-hook 'after-init-hook #'global-flycheck-mode)
      (setq flycheck-check-syntax-automatically '(save))
-     (add-hook 'flycheck-mode-hook 'flycheck-mode-keys))
-  :ensure t)
+     (add-hook 'flycheck-mode-hook 'flycheck-mode-keys)
+  )
+  :ensure t
+)
 
 (defun flycheck-buffer-and-list-errors()
   "execute command flycheck-buffer and flycheck-list-errors"
@@ -174,19 +176,25 @@
 
 
 ;; -- ruby settings: inf-ruby
-(add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
-(setq enh-ruby-check-syntax 'nil)
+(use-package enh-ruby-mode
+  :init (progn
+    (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
+    (setq enh-ruby-check-syntax 'nil)
+    (add-to-list 'auto-mode-alist '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . enh-ruby-mode))
+    (add-to-list 'auto-mode-alist '("\\(Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . enh-ruby-mode))
+
+  )
+  :ensure t
+)
 
 ;; -- ruby settigns: robe
-(add-hook 'enh-ruby-mode-hook 'robe-mode)
-;; (add-hook 'robe-mode-hook 'auto-complete-mode)
-
+(use-package robe
+  :init (add-hook 'enh-ruby-mode-hook 'robe-mode)
+  :ensure t
+)
+  
 
 ;; -- ruby enh-ruby-mode compile/run/debug settings
-(add-to-list 'auto-mode-alist
-	     '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist
-	     '("\\(Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . enh-ruby-mode))
 
 
 (defun inf-ruby-and-load-file()
