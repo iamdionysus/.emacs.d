@@ -239,16 +239,16 @@
 (add-hook 'enh-ruby-mode-hook 'enh-ruby-mode-keys)
 
 
-;; -- ruby: ruby-tools-mode
-(add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
-(defun ruby-tools-mode-keys()
-  "key map for ruby-tools-mode like vim surroud"
-  (local-set-key (kbd "C-c '") 'ruby-tools-to-single-quote-string)
-  (local-set-key (kbd "C-c \"") 'ruby-tools-to-double-quote-string)
-  (local-set-key (kbd "C-c :") 'ruby-tools-to-symbol)
-  (local-set-key (kbd "C-c ;") 'ruby-tools-clear-string)
-)
-(add-hook 'enh-ruby-mode-hook 'ruby-tools-mode-keys)
+;; ;; -- ruby: ruby-tools-mode
+;; (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
+;; (defun ruby-tools-mode-keys()
+;;   "key map for ruby-tools-mode like vim surroud"
+;;   (local-set-key (kbd "C-c '") 'ruby-tools-to-single-quote-string)
+;;   (local-set-key (kbd "C-c \"") 'ruby-tools-to-double-quote-string)
+;;   (local-set-key (kbd "C-c :") 'ruby-tools-to-symbol)
+;;   (local-set-key (kbd "C-c ;") 'ruby-tools-clear-string)
+;; )
+;; (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode-keys)
 
 ;; -- helm
 (use-package helm
