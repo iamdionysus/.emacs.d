@@ -252,13 +252,16 @@
 
 ;; -- helm
 (use-package helm
-  :bind (("C-x m" . helm-mini)
-	 ("C-x f" . helm-projectile)
-	 ("C-x C-d" . helm-find-files))
-  :ensure t)
+  :bind (
+    ("C-x m" . helm-mini)
+    ("C-x f" . helm-projectile)
+    ("C-x C-d" . helm-find-files))
+  :ensure t
+)
 
 (use-package helm-projectile
-  :ensure t)
+  :ensure t
+)
 ;; (global-set-key (kbd "C-x m") 'helm-mini)
 ;; (global-set-key (kbd "C-x f") 'helm-projectile)
 ;; (global-set-key (kbd "C-c f") 'helm-projectile)
