@@ -345,6 +345,13 @@
   :ensure t
 )
 
+;;; yaml-mode
+;;
+(use-package yaml-mode
+  :ensure t
+)
+
+
 ;;; setups for windows
 ;;
 (when window-system
