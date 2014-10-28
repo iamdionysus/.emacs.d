@@ -234,6 +234,11 @@
   )
 )
 
+;;; minitest mode for emacs
+;;
+(use-package minitest
+  :ensure t
+)
 
 ;; ;; -- ruby: ruby-tools-mode
 ;; (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
