@@ -29,24 +29,10 @@
 ;;
 
 (menu-bar-mode -1) ;; no menu bar
-(tool-bar-mode -1) ;; no tool bar
+;; (tool-bar-mode -1) ;; no tool bar
 (setq compilation-scroll-output t)  ;; automatically go to bottom of the compilation buffer
 (setq make-backup-files nil) ;; no backup file ~
 
-;;; fix ansi color break on compilation buffer
-;;
-;; (require 'ansi-color)
-;; (defun colorize-compilation-buffer ()
-;;   (read-only-mode)
-;;   (ansi-color-apply-on-region (point-min) (point-max))
-;;   (toggle-read-only)
-;; )
-;; (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-
-
-;;; shortcuts for productivity
-;;
-;;(global-set-key (kbd "RET") 'newline-and-indent) ;; better enter
 
 ;;; buffer-move
 ;;
@@ -70,11 +56,10 @@
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x \\") 'split-window-right)
 (global-set-key (kbd "C-M-o") 'other-window)
-;; (global-set-key (kbd "M-o") 'other-window) this is not working from mult-term
-(global-set-key (kbd "C-M-h") 'shrink-window-horizontally)
+(global-set-key (kbd "C-M-k") 'shrink-window-horizontally)
 (global-set-key (kbd "C-M-l") 'enlarge-window-horizontally)
-(global-set-key (kbd "C-M-k") 'shrink-window)
-(global-set-key (kbd "C-M-j") 'enlarge-window)
+(global-set-key (kbd "C-M-u") 'enlarge-window)
+(global-set-key (kbd "C-M-y") 'shrink-window)
 
 ;;; load-file
 ;;
@@ -110,12 +95,6 @@
 
 ;;; multi-term
 ;;
-;; (if (eq system-type 'gnu/linux)
-;;   (use-package multi-term
-;;     :bind (("C-M-t" . multi-term))
-;;     :ensure t)
-;; )
-;; use-package way of checking the system
 (use-package multi-term
   :if (not window-system)
   :bind (("C-M-t" . multi-term))
@@ -129,74 +108,31 @@
   :ensure t
 )
 
-;;; flycheck settings
-;;
-(use-package flycheck
-  :init
-  (progn
-     (add-hook 'after-init-hook #'global-flycheck-mode)
-     (setq flycheck-check-syntax-automatically '(save))
-     (add-hook 'flycheck-mode-hook 'flycheck-mode-keys)
-  )
-  :ensure t
-)
-
-(defun flycheck-buffer-and-list-errors()
-  "execute command flycheck-buffer and flycheck-list-errors"
-  (interactive)
-  (flycheck-buffer)
-  (flycheck-list-errors)
-  (other-window 1)
-)
-
-(defun flycheck-mode-keys()
-  "key map for flycheck-mode"
-  (local-set-key (kbd "<f7>") 'flycheck-buffer-and-list-errors)
-)
-
-
-;;; ruby settings: enh-ruby-mode
-;;
-(use-package enh-ruby-mode
-  :init 
-  (progn
-    (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
-    (setq enh-ruby-check-syntax 'nil)
-    (add-to-list 'auto-mode-alist '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . enh-ruby-mode))
-    (add-to-list 'auto-mode-alist '("\\(Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . enh-ruby-mode))
-  )
-  :bind(
-    ("<f2>" . inf-ruby)
-    ("<f5>" . inf-ruby-and-load-file)
-    ("<f6>" . ruby-save-compile-this-buffer)
-    ("<f9>" . toggle-breakpoint)
-    ("<f10>" . delete-all-breakpoint)
-    ("C-\\" . ruby-send-last-sexp)
-  )
-  :ensure t
-)
-(defun enh-ruby-mode-keys()
-  "key maps for enh-ruby-mode only"
-  (local-set-key (kbd "<f2>") 'inf-ruby)
-  (local-set-key (kbd "<f5>") 'inf-ruby-and-load-file)
-  (local-set-key (kbd "<f6>") 'ruby-save-compile-this-buffer)
-  (local-set-key (kbd "<f9>") 'toggle-breakpoint)
-  (local-set-key (kbd "<f10>") 'delete-all-breakpoint)
-  (local-set-key (kbd "C-\\") 'ruby-send-last-sexp)
-)
+;; ;;; ruby settings: enh-ruby-mode
+;; ;;
+;; (use-package enh-ruby-mode
+;;   :init 
+;;   (progn
+;;     (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
+;;     (setq enh-ruby-check-syntax 'nil)
+;;     (add-to-list 'auto-mode-alist '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . enh-ruby-mode))
+;;     (add-to-list 'auto-mode-alist '("\\(Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . enh-ruby-mode))
+;;   )
+;;   :ensure t
+;; )
+;; (defun enh-ruby-mode-keys()
+;;   "key maps for enh-ruby-mode only"
+;;   (local-set-key (kbd "<f2>") 'inf-ruby)
+;;   (local-set-key (kbd "<f5>") 'inf-ruby-and-load-file)
+;;   (local-set-key (kbd "<f6>") 'ruby-save-compile-this-buffer)
+;;   (local-set-key (kbd "<f9>") 'toggle-breakpoint)
+;;   (local-set-key (kbd "<f10>") 'delete-all-breakpoint)
+;;   (local-set-key (kbd "C-\\") 'ruby-send-last-sexp)
+;; )
  
-(add-hook 'enh-ruby-mode-hook 'enh-ruby-mode-keys)
+;; (add-hook 'enh-ruby-mode-hook 'enh-ruby-mode-keys)
 
-
-;;; ruby settigns: robe
-;;
-(use-package robe
-  :init (add-hook 'enh-ruby-mode-hook 'robe-mode)
-  :ensure t
-)
-  
-
-;; -- ruby enh-ruby-mode compile/run/debug settings
+;;; ruby settings: inf-ruby
 (defun inf-ruby-and-load-file()
   "execute command inf-ruby and ruby-load-file"
   (interactive)
@@ -206,13 +142,6 @@
     (inf-ruby)
     (ruby-load-file file-name-from)
   )
-)
-
-(defun ruby-save-compile-this-buffer()
-  "save current buffer and compile the buffer"
-  (interactive)
-  (save-buffer)
-  (ruby-compilation-this-buffer)
 )
 
 (defun toggle-breakpoint()
@@ -234,22 +163,39 @@
   )
 )
 
+(use-package inf-ruby
+  :bind(
+    ("<f2>" . inf-ruby)
+    ("<f5>" . inf-ruby-and-load-file)
+    ("<f6>" . ruby-save-compile-this-buffer)
+    ("<f9>" . toggle-breakpoint)
+    ("<f10>" . delete-all-breakpoint)
+;;    ("C-\\" . ruby-send-last-sexp)
+  )
+  :ensure t
+)  
+
+;;; ruby settings: rinari
+(use-package rinari
+  :ensure t
+)  
+
+;;; ruby settings: robe
+;;
+(use-package robe
+  :init (add-hook 'ruby-mode-hook 'robe-mode)
+  :ensure t
+)
+  
+
+;;; ruby compile/run/debug settings
+;;
+
 ;;; minitest mode for emacs
 ;;
 (use-package minitest
   :ensure t
 )
-
-;; ;; -- ruby: ruby-tools-mode
-;; (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
-;; (defun ruby-tools-mode-keys()
-;;   "key map for ruby-tools-mode like vim surroud"
-;;   (local-set-key (kbd "C-c '") 'ruby-tools-to-single-quote-string)
-;;   (local-set-key (kbd "C-c \"") 'ruby-tools-to-double-quote-string)
-;;   (local-set-key (kbd "C-c :") 'ruby-tools-to-symbol)
-;;   (local-set-key (kbd "C-c ;") 'ruby-tools-clear-string)
-;; )
-;; (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode-keys)
 
 ;;; helm
 ;;
@@ -278,14 +224,6 @@
   :ensure t
 )
 
-
-;;; projectile-rails
-;;
-(use-package projectile-rails
-  :init
-  (add-hook 'projectile-mode-hook 'projectile-rails-on)
-  :ensure t
-)
 
 ;;; company-mode
 ;;
@@ -367,7 +305,6 @@
   (add-to-list 'initial-frame-alist '(top . 50))
   (set-language-environment "UTF-8")
   (set-face-attribute 'default nil :font "Consolas-12")
-  (global-set-key [C-kanji] 'set-mark-command)
   (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
   (setq ispell-program-name "aspell")
   (setq ispell-personal-dictionary "C:/Program Files (x86)/Aspell/dict")
@@ -401,7 +338,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))))
+ '(custom-safe-themes
+   (quote
+    ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
