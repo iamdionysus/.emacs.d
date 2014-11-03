@@ -108,31 +108,8 @@
   :ensure t
 )
 
-;; ;;; ruby settings: enh-ruby-mode
-;; ;;
-;; (use-package enh-ruby-mode
-;;   :init 
-;;   (progn
-;;     (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
-;;     (setq enh-ruby-check-syntax 'nil)
-;;     (add-to-list 'auto-mode-alist '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . enh-ruby-mode))
-;;     (add-to-list 'auto-mode-alist '("\\(Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . enh-ruby-mode))
-;;   )
-;;   :ensure t
-;; )
-;; (defun enh-ruby-mode-keys()
-;;   "key maps for enh-ruby-mode only"
-;;   (local-set-key (kbd "<f2>") 'inf-ruby)
-;;   (local-set-key (kbd "<f5>") 'inf-ruby-and-load-file)
-;;   (local-set-key (kbd "<f6>") 'ruby-save-compile-this-buffer)
-;;   (local-set-key (kbd "<f9>") 'toggle-breakpoint)
-;;   (local-set-key (kbd "<f10>") 'delete-all-breakpoint)
-;;   (local-set-key (kbd "C-\\") 'ruby-send-last-sexp)
-;; )
- 
-;; (add-hook 'enh-ruby-mode-hook 'enh-ruby-mode-keys)
-
 ;;; ruby settings: inf-ruby
+;;
 (defun inf-ruby-and-load-file()
   "execute command inf-ruby and ruby-load-file"
   (interactive)
