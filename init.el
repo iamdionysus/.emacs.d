@@ -29,7 +29,7 @@
 ;;
 
 (menu-bar-mode -1) ;; no menu bar
-;; (tool-bar-mode -1) ;; no tool bar
+
 (setq compilation-scroll-output t)  ;; automatically go to bottom of the compilation buffer
 (setq make-backup-files nil) ;; no backup file ~
 
@@ -276,6 +276,7 @@
 ;;; setups for windows
 ;;
 (when window-system
+  (tool-bar-mode -1) ;; no tool bar
   (add-to-list 'initial-frame-alist '(height . 50))
   (add-to-list 'initial-frame-alist '(width . 180))
   (add-to-list 'initial-frame-alist '(left . 0))
