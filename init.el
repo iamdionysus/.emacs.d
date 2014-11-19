@@ -221,6 +221,7 @@
 (use-package web-mode
   :init
   (progn
+    (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))    
     (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
@@ -238,7 +239,8 @@
   :init
   (progn
     (add-hook 'html-mode-hook 'emmet-mode)
-    (add-hook 'web-mode-hook 'emmet-mode))
+    (add-hook 'web-mode-hook 'emmet-mode)
+  )
   :ensure t
 )
 
