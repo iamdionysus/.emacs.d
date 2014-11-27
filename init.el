@@ -95,7 +95,7 @@
 ;;; multi-term
 ;;
 (use-package multi-term
-  :if (not window-system)
+  :if (not window-system)  ;; needs to fix this later
   :bind (("C-M-t" . multi-term))
   :ensure t
 )
