@@ -96,7 +96,11 @@
 ;;
 (use-package multi-term
   :if (not window-system)  ;; needs to fix this later
-  :bind (("C-M-t" . multi-term))
+  :bind (
+	 ("C-M-t" . multi-term)
+	 ("C-x ." . multi-term-next)
+	 ("C-x ," . multi-term-prev)
+	 )
   :ensure t
 )
 
