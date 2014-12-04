@@ -157,6 +157,14 @@
 
 ;;; ruby settings: rinari
 (use-package rinari
+  :bind(
+	("C-c m" . rinari-find-model)
+	("C-c f" . rinari-find-fixture)
+	("C-c c" . rinari-find-controller)
+	("C-c r" . rinari-find-routes)
+	("C-c g" . rinari-find-migration)
+	("C-c t" . rinari-find-test)
+	)
   :ensure t
 )  
 
