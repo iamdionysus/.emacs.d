@@ -100,6 +100,8 @@
 	 ("C-M-t" . multi-term)
 	 ("C-x ." . multi-term-next)
 	 ("C-x ," . multi-term-prev)
+	 ("C-c C-k" . term-char-mode)
+	 ("C-c C-l" . term-line-mode)
 	 )
   :ensure t
 )
@@ -233,15 +235,29 @@
 (use-package web-mode
   :init
   (progn
-    (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))    
+    ;; (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))    
     (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    ;; (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+    (setq web-mode-comment-style 2)
+    ;; (setq web-mode-engines-alist
+    ;; 	  '(("ctemplate" . "\\.hbs\\'")
+    ;; 	    ("erb" . "\\.erb\\'"))
+    ;; )
   )
+  :ensure t
+)
+
+
+
+
+;;; sass-mode
+;;
+(use-package sass-mode
   :ensure t
 )
 
@@ -296,6 +312,11 @@
   :ensure t
 )
 
+;;; coffee script
+;;
+(use-package coffee-mode
+  :ensure t
+)
 
 ;;; tuareg
 ;;
