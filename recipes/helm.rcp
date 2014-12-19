@@ -1,0 +1,12 @@
+(:name helm
+       :description "Emacs incremental and narrowing framework"
+       :type github
+       :pkgname "emacs-helm/helm"
+       :build ("make")
+       :build/darwin `(("make" ,(format "EMACS_COMMAND=%s" el-get-emacs)))
+       ;; Windows probably doesn't have make available so we fake it.
+       :build/windows-nt (with-temp-file "helm-autoload.el"
+                           nil)
+       :after (progn
+                 (global-set-key (kbd "C-x m") 'helm-mini)
+                 (global-set-key (kbd "C-x C-d") 'helm-find-files)))

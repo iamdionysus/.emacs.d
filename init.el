@@ -8,22 +8,11 @@
 
 ;;; Code:
 
-;;; MELPA settgins
-;;
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
-
 
 ;;; Commonn-lisp compatibility
 ;;
 (with-no-warnings
   (require 'cl))
-
-;;; require use-package
-;;
-(require 'use-package)
 
 ;;; Look and feel
 ;;
@@ -32,18 +21,6 @@
 (setq compilation-scroll-output t)  ;; automatically go to bottom of the compilation buffer
 (setq make-backup-files nil) ;; no backup file ~
 (column-number-mode t)
-
-;;; buffer-move
-;;
-(use-package buffer-move
-  :bind(
-	("C-c <up>" . buf-move-up)
-	("C-c <down>" . buf-move-down)
-	("C-c <left>" . buf-move-left)
-	("C-c <right>" . buf-move-right)
-	)
-  :ensure t
-)
 
 ;;; better deletion
 ;;
@@ -64,341 +41,29 @@
 ;;
 (global-set-key (kbd "C-x C-l") 'load-file)
 
-;;; dired moving to parent directory without opening a new buffer
+;;; el-get settings
 ;;
-(put 'dired-find-alternate-file 'disabled nil)
-(add-hook 'dired-mode-hook
- (lambda ()
-  (define-key dired-mode-map (kbd "^")
-    (lambda () (interactive) (find-alternate-file "..")))
-  ; was dired-up-directory
-))
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
+(unless (require 'el-get nil 'noerror)
+  (require 'package)
+  (add-to-list 'package-archives
+	       '("melpa" . "http://melpa.org/packages/"))
+  (package-refresh-contents)
+  (package-initialize)
+  (package-install 'el-get)
+  (require 'el-get))
 
-;;; solarized-dark
-;;
-(use-package color-theme-solarized
-  :defer t
-  :init
-  (load-theme 'solarized-dark t)
-  :ensure t
-)
+(add-to-list 'el-get-recipe-path "~/.emacs.d/recipes/")
+(setq el-get-verbose t)
 
-;;; smex
-;;
-(use-package smex
-  :bind (("C-x C-m" . smex))
-  :ensure t
-)
+;; my package list goes here, group close ones
+(setq gabriel-packages
+      (append
+       '(smex multi-term
+	 smartparens
+	 web-mode
+	 company-mode company-inf-ruby
+	 helm projectile)))
 
-
-;;; multi-term
-;;
-(use-package multi-term
-  :if (not window-system)  ;; needs to fix this later
-  :bind (
-	 ("C-M-t" . multi-term)
-	 ("C-x ." . multi-term-next)
-	 ("C-x ," . multi-term-prev)
-	 ("C-c C-k" . term-char-mode)
-	 ("C-c C-l" . term-line-mode)
-	 )
-  :ensure t
-)
-
-;;; magit
-;;
-(use-package magit
-  :bind ("C-x g" . magit-status)
-  :ensure t
-)
-
-;;; ruby settings: inf-ruby
-;;
-(defun inf-ruby-and-load-file()
-  "execute command inf-ruby and ruby-load-file"
-  (interactive)
-  (let (file-name-from)
-    (setq file-name-from buffer-file-name)
-    (save-buffer)
-    (inf-ruby)
-    (ruby-load-file file-name-from)
-  )
-)
-
-(defun toggle-breakpoint()
-  "toggle breakpoint via binding.pry"
-  (interactive)
-  (beginning-of-line)
-  (insert "binding.pry")
-  (newline)
-)
-
-(defun delete-all-breakpoint()
-  "delete all breakpoint  as binding.pry"
-  (interactive)
-  (let (pos-from)
-    (setq pos-from (point))
-    (beginning-of-buffer)
-    (delete-matching-lines "binding.pry")
-    (goto-char pos-from)
-  )
-)
-
-(use-package inf-ruby
-  :bind(
-    ("<f2>" . inf-ruby)
-    ("<f5>" . inf-ruby-and-load-file)
-    ("<f6>" . ruby-save-compile-this-buffer)
-    ("<f9>" . toggle-breakpoint)
-    ("<f10>" . delete-all-breakpoint)
-;;    ("C-\\" . ruby-send-last-sexp)
-  )
-  :ensure t
-)  
-
-;;; ruby settings: rinari
-(use-package rinari
-  :bind(
-	("C-c m" . rinari-find-model)
-	("C-c f" . rinari-find-fixture)
-	("C-c c" . rinari-find-controller)
-	("C-c r" . rinari-find-routes)
-	("C-c g" . rinari-find-migration)
-	("C-c t" . rinari-find-test)
-	)
-  :ensure t
-)  
-
-;;; ruby settings: robe
-;;
-(use-package robe
-  :init (add-hook 'ruby-mode-hook 'robe-mode)
-  :ensure t
-)
-  
-
-;;; ruby compile/run/debug settings
-;;
-
-;;; minitest mode for emacs
-;;
-(use-package minitest
-  :ensure t
-)
-
-;;; helm
-;;
-(use-package helm
-  :bind (
-    ("C-x m" . helm-mini)
-    ("C-x f" . helm-projectile)
-    ("C-x C-d" . helm-find-files))
-  :ensure t
-)
-
-;;; helm-projectile
-;;
-(use-package helm-projectile
-  :ensure t
-)
-
-;;; projectile
-;;
-(use-package projectile
-  :init
-  (progn
-    (projectile-global-mode)
-  )
-  :bind (("C-x p" . projectile-find-file))
-  :ensure t
-)
-
-
-;;; company-mode
-;;
-(use-package company
-  :init
-  (progn
-      (add-hook 'after-init-hook 'global-company-mode)
-      (eval-after-load 'company
-	'(add-to-list 'company-backends 'company-inf-ruby))
-      (eval-after-load 'company
-	'(push 'company-robe company-backends)))
-  :bind
-  (("M-SPC" . company-complete-common))
-  :ensure t)
-
-
-;;; web-mode
-;;
-(use-package web-mode
-  :init
-  (progn
-    ;; (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))    
-    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-    ;; (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-    (setq web-mode-comment-style 2)
-    ;; (setq web-mode-engines-alist
-    ;; 	  '(("ctemplate" . "\\.hbs\\'")
-    ;; 	    ("erb" . "\\.erb\\'"))
-    ;; )
-  )
-  :ensure t
-)
-
-
-
-
-;;; sass-mode
-;;
-(use-package sass-mode
-  :ensure t
-)
-
-;;; emmet-mode
-;;
-(use-package emmet-mode
-  :init
-  (progn
-    (add-hook 'html-mode-hook 'emmet-mode)
-    (add-hook 'web-mode-hook 'emmet-mode)
-  )
-  :ensure t
-)
-
-;;; flx-ido
-;;
-(use-package flx-ido
-  :init
-  (progn
-    (require 'flx-ido)
-    (ido-mode t)
-    (ido-everywhere t)
-    (flx-ido-mode t)
-    (setq ido-enable-flex-matching t)
-    (setq ido-use-faces nil)
-  )
-  :ensure t
-)
-
-
-;;; markdown-mode
-;;
-(use-package markdown-mode
-  :ensure t
-)
-
-;;; yaml-mode
-;;
-(use-package yaml-mode
-  :ensure t
-)
-
-
-;;; smartparens
-;;
-(use-package smartparens
-  :init
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode t)
-  )
-  :ensure t
-)
-
-;;; coffee script
-;;
-(use-package coffee-mode
-  :ensure t
-)
-
-;;; tuareg
-;;
-(use-package tuareg
-  :ensure t
-  :init
-  (progn
-    (autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
-    (add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
-    (add-hook 'tuareg-mode-hook 'merlin-mode)
-  )
-)
-
-;;; utop
-;;
-(use-package utop
-  :ensure t
-)
-
-;;; merlin - needs opam install merlin
-;;
-;; set opam-share variable to user's .opam share
-(setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
-;; emacs related codes are in /emacs/site-lisp and load them all
-(add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
-(require 'merlin)
-
-;;; ocp-indent - needs opam install ocp-indent
-;;
-;; ocp-indent.el is already loaded from the code above
-(require 'ocp-indent)
-
-;;; setups for windows
-;;
-(if (eq system-type 'windows-nt)
-  (progn  
-    (tool-bar-mode -1) ;; no tool bar
-    (add-to-list 'initial-frame-alist '(height . 50))
-    (add-to-list 'initial-frame-alist '(width . 180))
-    (add-to-list 'initial-frame-alist '(left . 0))
-    (add-to-list 'initial-frame-alist '(top . 50))
-    (set-language-environment "UTF-8")
-    (set-face-attribute 'default nil :font "Consolas-12")
-    (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
-    (setq ispell-program-name "aspell")
-    (setq ispell-personal-dictionary "C:/Program Files (x86)/Aspell/dict")
-  )
-)
-
-;;; settings for mac osx
-;;
-(if (eq system-type 'darwin)
-  (progn
-    (tool-bar-mode -1)
-    (add-to-list 'initial-frame-alist '(height . 54))
-    (add-to-list 'initial-frame-alist '(width . 200))
-    (add-to-list 'initial-frame-alist '(left . 0))
-    (add-to-list 'initial-frame-alist '(top . 10))
-    (set-face-attribute 'default nil :font "Monaco-14")
-  )
-)
-
-;;; haskell-mode settings
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-;; ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
-;; (setq haskell-hoogle-command "hoogle")
-
-;; (defun haskell-process-load-and-jump()
-;;   "run haskell-process-load-or-reload and move to other window"
-;;   (interactive)
-;;   (haskell-process-load-or-reload)
-;;   (other-window 1)
-;; )
-
-;; (defun haskell-mode-keys()
-;;   "key map for haskell-mode"
-;;   (local-set-key (kbd "<f5>") 'haskell-process-load-and-jump)
-;;   (local-set-key (kbd "<f6>") 'flycheck-buffer-and-list-errors)
-;; )
-;; (add-hook 'haskell-mode-hook 'haskell-mode-keys)
-
-
-;;; init.el ends here
+(el-get 'sync gabriel-packages)
