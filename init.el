@@ -36,6 +36,7 @@
        '(smex multi-term
 	 smartparens
 	 web-mode emmet-mode sass-mode markdown-mode yaml-mode
+	 org-mode
 	 company-mode company-inf-ruby
 	 helm projectile flx
 	 inf-ruby)))
