@@ -1,5 +1,9 @@
 (provide 'my-dev)
 
+;;; org
+(use-package org
+  :ensure t)
+
 ;;; web-mode
 ;;
 (use-package web-mode
