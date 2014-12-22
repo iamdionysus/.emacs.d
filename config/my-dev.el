@@ -1,7 +1,12 @@
 (provide 'my-dev)
 
 ;;; org
+;;
 (use-package org
+  :init
+  (progn
+    (setq org-tag-alist '(("WORK" . ?w) ("HOME" . ?h)))
+    (setq org-src-fontify-natively t))
   :ensure t)
 
 ;;; web-mode
