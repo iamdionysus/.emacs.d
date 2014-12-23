@@ -37,25 +37,19 @@
 
 ;;; smex
 ;;
-(use-package smex
-  :bind (("C-x C-m" . smex))
-  :ensure t
-)
+(use-package smex :ensure t)
 
 
 ;;; multi-term
 ;;
 (use-package multi-term
   :if (not window-system)  ;; needs to fix this later
-  :bind (
-	 ("C-M-t" . multi-term)
+  :bind (("C-M-t" . multi-term)
 	 ("C-x ." . multi-term-next)
 	 ("C-x ," . multi-term-prev)
 	 ("C-c C-k" . term-char-mode)
-	 ("C-c C-l" . term-line-mode)
-	 )
-  :ensure t
-)
+	 ("C-c C-l" . term-line-mode))
+  :ensure t)
 
 
 ;;; projectile
@@ -64,38 +58,21 @@
   :init
   (progn
     (projectile-global-mode)
-    (setq projectile-indexing-method 'alien)
-  )
-  :bind (("C-x p" . projectile-find-file))
-  :ensure t
-)
+    (setq projectile-indexing-method 'alien))
+  :ensure t)
 
 
 ;;; recentf
 ;;
 (recentf-mode t)
-(global-set-key (kbd "C-x m") 'recentf-open-files)
+(setq recentf-max-menu-items 50)
 
 
 ;;; electric-pair-mode
 ;;
 (electric-pair-mode t)
+(show-paren-mode t)
 (setq blink-matching-paren nil)
-
-;;; company-mode
-;;
-(use-package company
-  :init
-  (progn
-      (add-hook 'after-init-hook 'global-company-mode)
-      (eval-after-load 'company
-	'(add-to-list 'company-backends 'company-inf-ruby))
-      (eval-after-load 'company
-	'(push 'company-robe company-backends)))
-  :bind
-  (("M-SPC" . company-complete-common))
-  :ensure t)
-
 
 
 ;;; flx-ido
@@ -108,7 +85,5 @@
     (ido-everywhere t)
     (flx-ido-mode t)
     (setq ido-enable-flex-matching t)
-    (setq ido-use-faces nil)
-  )
-  :ensure t
-)
+    (setq ido-use-faces nil))
+  :ensure t)

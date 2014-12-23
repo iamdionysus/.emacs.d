@@ -5,10 +5,25 @@
 (use-package org
   :init
   (progn
-    (setq org-tag-alist '(("WORK" . ?w) ("HOME" . ?h)))
+    ;; (setq org-tag-alist '(("WORK" . ?w) ("HOME" . ?h)))
     (setq org-src-fontify-natively t)
-    (setq org-log-done 'time))
+    (setq org-log-done 'time)
+    (setq org-hide-leading-stars t)
+    (setq org-return-follows-link t))
   :ensure t)
+
+;;; company-mode
+;;
+(use-package company
+  :init
+  (progn
+      (add-hook 'after-init-hook 'global-company-mode)
+      ;; (eval-after-load 'company
+      ;; 	'(add-to-list 'company-backends 'company-inf-ruby))
+      (eval-after-load 'company
+	'(push 'company-robe company-backends)))
+  :ensure t)
+
 
 ;;; web-mode
 ;;
@@ -42,8 +57,7 @@
   :init
   (progn
     (add-hook 'html-mode-hook 'emmet-mode)
-    (add-hook 'web-mode-hook 'emmet-mode)
-  )
+    (add-hook 'web-mode-hook 'emmet-mode))
   :ensure t)
 
 ;;; markdown-mode
