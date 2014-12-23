@@ -58,27 +58,29 @@
 )
 
 
-;;; helm
-;;
-(use-package helm
-  :bind (
-    ("C-x m" . helm-mini)
-    ("C-x C-d" . helm-find-files))
-  :ensure t
-)
-
-
 ;;; projectile
 ;;
 (use-package projectile
   :init
   (progn
     (projectile-global-mode)
+    (setq projectile-indexing-method 'alien)
   )
   :bind (("C-x p" . projectile-find-file))
   :ensure t
 )
 
+
+;;; recentf
+;;
+(recentf-mode t)
+(global-set-key (kbd "C-x m") 'recentf-open-files)
+
+
+;;; electric-pair-mode
+;;
+(electric-pair-mode t)
+(setq blink-matching-paren nil)
 
 ;;; company-mode
 ;;
@@ -107,18 +109,6 @@
     (flx-ido-mode t)
     (setq ido-enable-flex-matching t)
     (setq ido-use-faces nil)
-  )
-  :ensure t
-)
-
-
-;;; smartparens
-;;
-(use-package smartparens
-  :init
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode t)
   )
   :ensure t
 )

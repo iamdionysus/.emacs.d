@@ -6,7 +6,8 @@
   :init
   (progn
     (setq org-tag-alist '(("WORK" . ?w) ("HOME" . ?h)))
-    (setq org-src-fontify-natively t))
+    (setq org-src-fontify-natively t)
+    (setq org-log-done 'time))
   :ensure t)
 
 ;;; web-mode

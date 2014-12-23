@@ -18,8 +18,3 @@
 ;;; load-file
 ;;
 (global-set-key (kbd "C-x C-l") 'load-file)
-
-
-
-
-
