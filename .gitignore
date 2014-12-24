@@ -7,3 +7,5 @@ auto-save-list/
 server/
 eshell/
 bookmarks
+recentf
+ido.last
