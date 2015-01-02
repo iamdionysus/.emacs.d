@@ -8,7 +8,7 @@
     ;; (setq org-tag-alist '(("WORK" . ?w) ("HOME" . ?h)))
     (setq org-src-fontify-natively t)
     (setq org-log-done 'time)
-    (setq org-hide-leading-stars t)
+;;    (setq org-hide-leading-stars t)
     (setq org-return-follows-link t))
   :ensure t)
 
