@@ -25,11 +25,14 @@
 
 ;;; personal settings
 ;;
+(setq create-lockfiles nil) ;; solve broccoli issue which bothers ember-cli
+(setq auto-save-visited-file-name t)
+(setq backup-directory-alist
+      '(("" . "~/.emacs.d/emacs-backup")))
+
 (add-to-list 'load-path "~/.emacs.d/config")
 (require 'my-shortcuts)
 (require 'my-look-and-feel)
-(setq make-backup-files nil) ;; no backup file ~
-
 
 ;;; require use-package
 ;;
