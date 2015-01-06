@@ -34,3 +34,14 @@
      (define-key org-mode-map (kbd "C-M-n") 'outline-next-visible-heading)
      (define-key org-mode-map (kbd "C-M-p") 'outline-previous-heading)
      (define-key org-mode-map (kbd "C-c C-x C-k") 'org-cut-special)))
+
+;;; my-ruby
+;;
+(eval-after-load 'rinari-minor-mode
+  '(progn
+     (define-key rinari-minor-mode-map (kbd "C-c m") 'rinari-find-model)
+     (define-key rinari-minor-mode-map (kbd "C-c f") 'rinari-find-fixture)
+     (define-key rinari-minor-mode-map (kbd "C-c c") 'rinari-find-controller)
+     (define-key rinari-minor-mode-map (kbd "C-c r") 'rinari-find-routes)
+     (define-key rinari-minor-mode-map (kbd "C-c g") 'rinari-find-migration)
+     (define-key rinari-minor-mode-map (kbd "C-c t") 'rinari-find-test)))
