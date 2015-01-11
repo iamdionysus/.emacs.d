@@ -46,6 +46,11 @@
   )
   :ensure t)
 
+;;; handlebars-mode
+(use-package handlebars-mode
+  :ensure t)
+
+
 ;;; sass-mode
 ;;
 (use-package sass-mode
