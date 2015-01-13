@@ -29,7 +29,7 @@
 (setq auto-save-visited-file-name t)
 (setq backup-directory-alist
       '(("" . "~/.emacs.d/emacs-backup")))
-
+(split-window-right)
 (add-to-list 'load-path "~/.emacs.d/config")
 (require 'my-shortcuts)
 (require 'my-look-and-feel)
