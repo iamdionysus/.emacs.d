@@ -74,7 +74,7 @@
 ;;
 (use-package coffee-mode
   :ensure t
-)
+  :init (custom-set-variables '(coffee-tab-width 2)))
 
 ;;; haskell-mode settings
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
