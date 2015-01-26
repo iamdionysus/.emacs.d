@@ -1,15 +1,5 @@
 (provide 'my-util)
 
-;;; solarized-dark
-;;
-(use-package color-theme-solarized
-  :if (window-system)
-  :defer t
-  :init
-  (load-theme 'solarized-dark t)
-  :ensure t
-)
-
 
 ;;; buffer-move
 ;;

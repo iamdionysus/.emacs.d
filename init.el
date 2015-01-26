@@ -25,11 +25,12 @@
 
 ;;; personal settings
 ;;
+(load-theme 'wombat)
+(split-window-right)
 (setq create-lockfiles nil) ;; solve broccoli issue which bothers ember-cli
 (setq auto-save-visited-file-name t)
 (setq backup-directory-alist
       '(("" . "~/.emacs.d/emacs-backup")))
-(split-window-right)
 (add-to-list 'load-path "~/.emacs.d/config")
 (require 'my-shortcuts)
 (require 'my-look-and-feel)
@@ -43,6 +44,9 @@
 (require 'my-util)
 (require 'my-dev)
 (require 'my-ruby)
+
+(if (eq system-type 'windows-nt)
+    (setq w32-get-true-file-attributes nil))
 ;; (unless (eq system-type 'windows-nt)
 ;;   (require 'my-ocaml))
 

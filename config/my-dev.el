@@ -28,9 +28,13 @@
 ;;; web-mode
 ;;
 (use-package web-mode
+  :load-path "lisp/web-mode/"
   :init
   (progn
-    ;; (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))    
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))    
     ;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
     ;; (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
     ;; (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
@@ -38,22 +42,18 @@
     (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
     ;; (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
     ;; (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-    (setq web-mode-comment-style 2)
+    ;; (setq web-mode-comment-style 2)
     ;; (setq web-mode-engines-alist
     ;; 	  '(("ctemplate" . "\\.hbs\\'")
     ;; 	    ("erb" . "\\.erb\\'"))
     ;; )
-  )
-  :ensure t)
 
-;;; handlebars-mode
-(use-package handlebars-mode
-  :ensure t)
+    )
+  :pin manual)
 
-
-;;; sass-mode
+;;; scss-mode
 ;;
-(use-package sass-mode
+(use-package scss-mode
   :ensure t)
 
 ;;; emmet-mode
