@@ -24,11 +24,12 @@
 	'(push 'company-robe company-backends)))
   :ensure t)
 
+;;; js-mode
+(setq js-indent-level 2)
 
 ;;; web-mode
 ;;
 (use-package web-mode
-  :load-path "lisp/web-mode/"
   :init
   (progn
     (setq web-mode-markup-indent-offset 2)
@@ -49,7 +50,7 @@
     ;; )
 
     )
-  :pin manual)
+  :ensure t)
 
 ;;; scss-mode
 ;;
