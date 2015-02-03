@@ -45,7 +45,9 @@
 )  
 
 ;;; ruby settings: rinari
+;;
 (use-package rinari
+  :init (add-hook 'ruby-mode-hook 'rinari-minor-mode)
   ;; :bind(
   ;; 	("C-c m" . rinari-find-model)
   ;; 	("C-c f" . rinari-find-fixture)
@@ -59,6 +61,13 @@
 ;;; ruby settings: robe
 ;;
 (use-package robe
-  :init (add-hook 'ruby-mode-hook 'robe-mode)
-  :ensure t
-)
+  :init
+  (progn
+    (add-hook 'ruby-mode-hook 'robe-mode)
+    (define-key rinari-minor-mode-map (kbd "C-c m") 'rinari-find-model)
+    (define-key rinari-minor-mode-map (kbd "C-c f") 'rinari-find-fixture)
+    (define-key rinari-minor-mode-map (kbd "C-c c") 'rinari-find-controller)
+    (define-key rinari-minor-mode-map (kbd "C-c r") 'rinari-find-routes)
+    (define-key rinari-minor-mode-map (kbd "C-c g") 'rinari-find-migration)
+    (define-key rinari-minor-mode-map (kbd "C-c t") 'rinari-find-test))
+  :ensure t)
