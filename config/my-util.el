@@ -77,3 +77,7 @@
     (setq ido-enable-flex-matching t)
     (setq ido-use-faces nil))
   :ensure t)
+
+;;; ag
+(use-package ag
+  :ensure t)
