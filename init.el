@@ -46,7 +46,10 @@
 (require 'my-ruby)
 
 (if (eq system-type 'windows-nt)
-    (setq w32-get-true-file-attributes nil))
+    (progn
+      (setq w32-get-true-file-attributes nil)
+      ))
+
 ;; (unless (eq system-type 'windows-nt)
 ;;   (require 'my-ocaml))
 
