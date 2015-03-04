@@ -29,6 +29,17 @@
 (global-set-key (kbd "C-x C-m") 'smex)
 (global-set-key (kbd "C-x p") 'projectile-find-file)
 (global-set-key (kbd "C-x m") 'recentf-open-files)
+(if (window-system)
+    (progn
+      (global-set-key (kbd "C-M-t") 'eshell))
+  (progn
+    (global-set-key (kbd "C-M-t") 'multi-term)
+    (global-set-key (kbd "C-x .") 'multi-term-next)
+    (global-set-key (kbd "C-x ,") 'multi-term-prev)
+    (global-set-key (kbd "C-c C-k") 'term-char-mode)
+    (global-set-key (kbd "C-c C-l") 'term-line-mode)))
+
+
 
 ;;; my-dev
 ;;

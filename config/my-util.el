@@ -27,18 +27,13 @@
 
 ;;; smex
 ;;
-(use-package smex :ensure t)
+(use-package smex
+  :ensure t)
 
 
 ;;; multi-term
 ;;
 (use-package multi-term
-  :if (not window-system)  ;; needs to fix this later
-  :bind (("C-M-t" . multi-term)
-	 ("C-x ." . multi-term-next)
-	 ("C-x ," . multi-term-prev)
-	 ("C-c C-k" . term-char-mode)
-	 ("C-c C-l" . term-line-mode))
   :ensure t)
 
 
