@@ -25,6 +25,7 @@
   :ensure t)
 
 ;;; js-mode
+;;
 (setq js-indent-level 2)
 
 ;;; web-mode

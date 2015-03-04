@@ -10,6 +10,10 @@
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x \\") 'split-window-right)
 (global-set-key (kbd "C-M-o") 'other-window)
+(global-set-key (kbd "C-<left>") 'windmove-left)
+(global-set-key (kbd "C-<right>") 'windmove-right)
+(global-set-key (kbd "C-<up>") 'windmove-up)
+(global-set-key (kbd "C-<down>") 'windmove-down)
 (global-set-key (kbd "C-M-k") 'shrink-window-horizontally)
 (global-set-key (kbd "C-M-l") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-M-u") 'enlarge-window)
@@ -37,6 +41,3 @@
 
 ;;; my-ruby
 ;;
-(eval-after-load 'rinari-minor-mode
-  '(progn
-))
