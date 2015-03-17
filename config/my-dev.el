@@ -24,6 +24,11 @@
 	'(push 'company-robe company-backends)))
   :ensure t)
 
+;;; scala-mode
+;;
+(use-package scala-mode2
+  :ensure t)
+
 ;;; js-mode
 ;;
 (setq js-indent-level 2)

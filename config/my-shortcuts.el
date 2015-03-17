@@ -52,3 +52,12 @@
 
 ;;; my-ruby
 ;;
+(eval-after-load 'rinari
+  '(progn
+    (add-hook 'ruby-mode-hook 'rinari-minor-mode)
+    (define-key rinari-minor-mode-map (kbd "C-c m") 'rinari-find-model)
+    (define-key rinari-minor-mode-map (kbd "C-c f") 'rinari-find-fixture)
+    (define-key rinari-minor-mode-map (kbd "C-c c") 'rinari-find-controller)
+    (define-key rinari-minor-mode-map (kbd "C-c r") 'rinari-find-routes)
+    (define-key rinari-minor-mode-map (kbd "C-c g") 'rinari-find-migration)
+    (define-key rinari-minor-mode-map (kbd "C-c t") 'rinari-find-test)))
