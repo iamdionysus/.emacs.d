@@ -7,6 +7,8 @@
 
 ;;; manage window splits easily
 ;;
+(global-set-key (kbd "C-x [") 'previous-buffer)
+(global-set-key (kbd "C-x ]") 'next-buffer)
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x \\") 'split-window-right)
 (global-set-key (kbd "C-M-o") 'other-window)
