@@ -76,3 +76,7 @@
 ;;; ag
 (use-package ag
   :ensure t)
+
+;;; magit
+(use-package magit
+  :ensure t)

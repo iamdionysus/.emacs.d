@@ -37,7 +37,8 @@
 
 ;;; require use-package
 ;;
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
 ;;; package settings
 ;;

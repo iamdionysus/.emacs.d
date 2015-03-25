@@ -29,6 +29,9 @@
 (global-set-key (kbd "C-x C-m") 'smex)
 (global-set-key (kbd "C-x p") 'projectile-find-file)
 (global-set-key (kbd "C-x m") 'recentf-open-files)
+(global-set-key (kbd "C-x a") 'magit-stage-all)
+(global-set-key (kbd "C-x c") 'magit-key-mode-popup-committing)
+(global-set-key (kbd "C-x g") 'magit-status)
 (if (window-system)
     (progn
       (global-set-key (kbd "C-M-t") 'eshell))
