@@ -36,12 +36,19 @@
 (use-package multi-term
   :ensure t)
 
+;;; persp-projectile
+;;
+(use-package persp-projectile
+  :ensure t)
+
 
 ;;; projectile
 ;;
 (use-package projectile
-  :init
+  :config
   (progn
+    (persp-mode)
+    (require 'persp-projectile)
     (projectile-global-mode)
     (setq projectile-indexing-method 'alien))
   :ensure t)
@@ -63,7 +70,7 @@
 ;;; flx-ido
 ;;
 (use-package flx-ido
-  :init
+  :config
   (progn
     (require 'flx-ido)
     (ido-mode t)
@@ -77,6 +84,6 @@
 (use-package ag
   :ensure t)
 
-;;; magit
-(use-package magit
+;;; ace-jump-mode
+(use-package ace-jump-mode
   :ensure t)

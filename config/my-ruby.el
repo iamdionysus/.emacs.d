@@ -22,7 +22,7 @@
 )
 
 (defun delete-all-breakpoint()
-  "delete all breakpoint  as binding.pry"
+  "delete all breakpoint as binding.pry"
   (interactive)
   (let (pos-from)
     (setq pos-from (point))
@@ -36,7 +36,7 @@
   :bind(
     ("<f2>" . inf-ruby)
     ("<f5>" . inf-ruby-and-load-file)
-    ("<f6>" . ruby-save-compile-this-buffer)
+    ;; ("<f6>" . ruby-save-compile-this-buffer)
     ("<f9>" . toggle-breakpoint)
     ("<f10>" . delete-all-breakpoint)
 ;;    ("C-\\" . ruby-send-last-sexp)
@@ -47,7 +47,7 @@
 ;;; ruby settings: rinari
 ;;
 (use-package rinari
-  ;; :init
+  ;; :config
   ;; (progn
   ;;   (add-hook 'ruby-mode-hook 'rinari-minor-mode)
   ;;   (define-key rinari-minor-mode-map (kbd "C-c m") 'rinari-find-model)
@@ -62,5 +62,10 @@
 ;;; ruby settings: robe
 ;;
 (use-package robe
-  :init (add-hook 'ruby-mode-hook 'robe-mode)
+  :config (add-hook 'ruby-mode-hook 'robe-mode)
+  :ensure t)
+
+;;; ruby tools
+;;
+(use-package ruby-tools
   :ensure t)

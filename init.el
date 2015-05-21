@@ -52,5 +52,6 @@
 ;; (unless (eq system-type 'windows-nt)
 ;;   (require 'my-ocaml))
 
+(setq inhibit-startup-screen t)
 ;;; init.el ends here
 

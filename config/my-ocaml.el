@@ -4,7 +4,7 @@
 ;;
 (use-package tuareg
   :ensure t
-  :init
+  :config
   (progn
     (autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
     (add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)

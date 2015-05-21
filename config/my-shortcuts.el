@@ -1,3 +1,11 @@
+;;; my-shortcuts.el --- sets my shortcut
+
+;;; Commentary:
+;;
+;; this fils is to set up my shortcuts
+
+;;; Code:
+
 (provide 'my-shortcuts)
 
 ;;; better deletion
@@ -7,8 +15,8 @@
 
 ;;; manage window splits easily
 ;;
-(global-set-key (kbd "C-x [") 'previous-buffer)
-(global-set-key (kbd "C-x ]") 'next-buffer)
+;; (global-set-key (kbd "C-x [") 'previous-buffer)
+;; (global-set-key (kbd "C-x ]") 'next-buffer)
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x \\") 'split-window-right)
 (global-set-key (kbd "C-M-o") 'other-window)
@@ -28,15 +36,16 @@
 ;;; load-bookmarklist
 ;;
 (global-set-key (kbd "C-x C-l") 'bookmark-bmenu-list)
-(global-set-key (kbd "C-x C-j") 'bookmark-jump)
 
+;;; eval-last-sexp
+;;
+(global-set-key (kbd "C-x C-j") 'eval-last-sexp)
 ;;; my-util
 ;;
 (global-set-key (kbd "C-x C-m") 'smex)
 (global-set-key (kbd "C-x p") 'projectile-find-file)
+(global-set-key (kbd "C-x i") 'projectile-invalidate-cache)
 (global-set-key (kbd "C-x m") 'recentf-open-files)
-(global-set-key (kbd "C-x c") 'magit-key-mode-popup-committing)
-(global-set-key (kbd "C-x g") 'magit-status)
 (if (window-system)
     (progn
       (global-set-key (kbd "C-M-t") 'eshell))
@@ -47,7 +56,11 @@
     (global-set-key (kbd "C-c C-k") 'term-char-mode)
     (global-set-key (kbd "C-c C-l") 'term-line-mode)))
 
-
+(global-set-key (kbd "C-x [") 'persp-prev)
+(global-set-key (kbd "C-x ]") 'persp-next)
+(global-set-key (kbd "C-x C-SPC") 'ace-jump-mode)
+(eval-after-load 'projectile
+  '(define-key projectile-mode-map (kbd "C-x C-p") 'projectile-persp-switch-project))
 
 ;;; my-dev
 ;;
@@ -57,6 +70,10 @@
      (define-key org-mode-map (kbd "C-M-n") 'outline-next-visible-heading)
      (define-key org-mode-map (kbd "C-M-p") 'outline-previous-heading)
      (define-key org-mode-map (kbd "C-c C-x C-k") 'org-cut-special)))
+
+(global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+(global-set-key (kbd "C-M-;") 'evilnc-comment-or-uncomment-paragraphs)
+
 
 ;;; my-ruby
 ;;

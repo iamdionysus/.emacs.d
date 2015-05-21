@@ -3,7 +3,7 @@
 ;;; org
 ;;
 (use-package org
-  :init
+  :config
   (progn
     ;; (setq org-tag-alist '(("WORK" . ?w) ("HOME" . ?h)))
     (setq org-src-fontify-natively t)
@@ -15,7 +15,7 @@
 ;;; company-mode
 ;;
 (use-package company
-  :init
+  :config
   (progn
       (add-hook 'after-init-hook 'global-company-mode)
       ;; (eval-after-load 'company
@@ -36,7 +36,7 @@
 ;;; web-mode
 ;;
 (use-package web-mode
-  :init
+  :config
   (progn
     (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))    
     ;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -71,7 +71,7 @@
 ;;; emmet-mode
 ;;
 (use-package emmet-mode
-  :init
+  :config
   (progn
     (add-hook 'html-mode-hook 'emmet-mode)
     (add-hook 'web-mode-hook 'emmet-mode))
@@ -91,7 +91,18 @@
 ;;
 (use-package coffee-mode
   :ensure t
-  :init (custom-set-variables '(coffee-tab-width 2)))
+  :config (custom-set-variables '(coffee-tab-width 2)))
+
+;;; flycheck
+;;
+(use-package flycheck
+  :config (add-hook 'after-init-hook #'global-flycheck-mode)
+  :ensure t)
+
+;;; evil-nerd-commenter
+;;
+(use-package evil-nerd-commenter
+  :ensure t)
 
 ;;; haskell-mode settings
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
