@@ -45,7 +45,7 @@
 ;;; projectile
 ;;
 (use-package projectile
-  :config
+  :init
   (progn
     (persp-mode)
     (require 'persp-projectile)

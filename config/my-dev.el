@@ -104,6 +104,12 @@
 (use-package evil-nerd-commenter
   :ensure t)
 
+
+;;; json-mode
+;;
+(use-package json-mode
+  :ensure t)
+
 ;;; haskell-mode settings
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 ;; ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
