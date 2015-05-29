@@ -79,6 +79,24 @@
 ;; (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
 (global-set-key (kbd "C-M-;") 'evilnc-comment-or-uncomment-paragraphs)
 
+(defun web-mode-inside-next-element()
+  "move to next html element and select element content"
+  (interactive)
+  (web-mode-element-end)
+  (web-mode-element-next)
+  (web-mode-element-content-select))
+
+(defun web-mode-inside-previous-element()
+  "move to next html element and select element content"
+  (interactive)
+  (web-mode-element-beginning)
+  (web-mode-element-previous)
+  (web-mode-element-content-select))
+
+(eval-after-load 'web-mode
+  '(progn
+     (define-key web-mode-map (kbd "C-M-n") 'web-mode-inside-next-element)
+     (define-key web-mode-map (kbd "C-M-p") 'web-mode-inside-previous-element)))
 
 ;;; my-ruby
 ;;
