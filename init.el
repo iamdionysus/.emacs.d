@@ -1,4 +1,4 @@
-[];;; init.el --- sets my style
+;;; init.el --- sets my style
 
 ;;; Commentary:
 ;;

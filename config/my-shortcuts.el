@@ -15,8 +15,8 @@
 
 ;;; manage window splits easily
 ;;
-;; (global-set-key (kbd "C-x [") 'previous-buffer)
-;; (global-set-key (kbd "C-x ]") 'next-buffer)
+(global-set-key (kbd "C-x [") 'previous-buffer)
+(global-set-key (kbd "C-x ]") 'next-buffer)
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x \\") 'split-window-right)
 (global-set-key (kbd "C-M-o") 'other-window)
@@ -40,6 +40,7 @@
 ;;; eval-last-sexp
 ;;
 (global-set-key (kbd "C-x C-j") 'eval-last-sexp)
+
 ;;; my-util
 ;;
 (global-set-key (kbd "C-x C-m") 'smex)
@@ -56,11 +57,7 @@
     (global-set-key (kbd "C-c C-k") 'term-char-mode)
     (global-set-key (kbd "C-c C-l") 'term-line-mode)))
 
-(global-set-key (kbd "C-x [") 'persp-prev)
-(global-set-key (kbd "C-x ]") 'persp-next)
 (global-set-key (kbd "C-x C-SPC") 'ace-jump-mode)
-(eval-after-load 'projectile
-  '(define-key projectile-mode-map (kbd "C-x C-p") 'projectile-persp-switch-project))
 
 ;;; my-dev
 ;;
@@ -71,7 +68,15 @@
      (define-key org-mode-map (kbd "C-M-p") 'outline-previous-heading)
      (define-key org-mode-map (kbd "C-c C-x C-k") 'org-cut-special)))
 
-(global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+(defun comment-or-uncomment-line-and-forward-line()
+    "evilnc-comment-or-uncomment-lines and move to next-line"
+  (interactive)
+  (evilnc-comment-or-uncomment-lines 1)
+  (forward-line)
+  (beginning-of-line))
+
+(global-set-key (kbd "M-;") 'comment-or-uncomment-line-and-forward-line)
+;; (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
 (global-set-key (kbd "C-M-;") 'evilnc-comment-or-uncomment-paragraphs)
 
 

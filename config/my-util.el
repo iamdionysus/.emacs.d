@@ -36,19 +36,12 @@
 (use-package multi-term
   :ensure t)
 
-;;; persp-projectile
-;;
-(use-package persp-projectile
-  :ensure t)
-
 
 ;;; projectile
 ;;
 (use-package projectile
   :init
   (progn
-    (persp-mode)
-    (require 'persp-projectile)
     (projectile-global-mode)
     (setq projectile-indexing-method 'alien))
   :ensure t)
