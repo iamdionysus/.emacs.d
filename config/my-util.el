@@ -10,19 +10,18 @@
 	("C-c <left>" . buf-move-left)
 	("C-c <right>" . buf-move-right)
 	)
-  :ensure t
-)
+  :ensure t)
 
 
 ;;; dired moving to parent directory without opening a new buffer
 ;;
-(put 'dired-find-alternate-file 'disabled nil)
-(add-hook 'dired-mode-hook
- (lambda ()
-  (define-key dired-mode-map (kbd "^")
-    (lambda () (interactive) (find-alternate-file "..")))
-  ; was dired-up-directory
-))
+;; (put 'dired-find-alternate-file 'disabled nil)
+;; (add-hook 'dired-mode-hook
+;;  (lambda ()
+;;   (define-key dired-mode-map (kbd "^")
+;;     (lambda () (interactive) (find-alternate-file "..")))
+;;   ; was dired-up-directory
+;; ))
 
 
 ;;; smex
@@ -75,8 +74,4 @@
 
 ;;; ag
 (use-package ag
-  :ensure t)
-
-;;; ace-jump-mode
-(use-package ace-jump-mode
   :ensure t)
