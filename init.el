@@ -9,13 +9,9 @@
 ;;; Code:
 
 
+(require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
+(cask-initialize)
 
-;;; MELPA settgins
-;;
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
 ;; (require 'benchmark-init)
 
 ;;; Commonn-lisp compatibility
@@ -35,22 +31,94 @@
 (require 'my-shortcuts)
 (require 'my-look-and-feel)
 
-;;; require use-package
-;;
-(eval-when-compile
-  (require 'use-package))
 
 ;;; package settings
 ;;
-(require 'my-util)
-(require 'my-dev)
-(require 'my-ruby)
+;; (require 'my-ruby)
 
 (if (eq system-type 'windows-nt)
     (setq w32-get-true-file-attributes nil))
 
 ;; (unless (eq system-type 'windows-nt)
 ;;   (require 'my-ocaml))
+
+;;; flycheck
+;;
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;;; electric-pair-mode
+;;
+(electric-pair-mode t)
+(show-paren-mode t)
+(setq blink-matching-paren nil)
+
+;;; flx-ido
+;;
+(require 'flx-ido)
+(ido-mode t)
+(ido-everywhere t)
+(flx-ido-mode t)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+
+;;; recentf
+;;
+(recentf-mode t)
+(setq recentf-max-menu-items 50)
+
+
+;;; projectile
+;;
+(projectile-global-mode)
+(setq projectile-indexing-method 'alien)
+
+;;; org
+;;
+(setq org-src-fontify-natively t)
+(setq org-log-done 'time)
+(setq org-return-follows-link t)
+
+;;; company-mode
+;;
+;; (eval-after-load 'company
+;; 	'(add-to-list 'company-backends 'company-inf-ruby))
+(add-hook 'after-init-hook 'global-company-mode)
+(eval-after-load 'company '(push 'company-robe company-backends))
+
+;;; js-mode
+;;
+(setq js-indent-level 2)
+
+;;; web-mode
+;;
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+;; (setq web-mode-comment-style 2)
+;; (setq web-mode-engines-alist
+;; 	  '(("ctemplate" . "\\.hbs\\'")
+;; 	    ("erb" . "\\.erb\\'"))
+
+(defun my-web-mode-hook ()
+  "Hooks for web mode."
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2))
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+
+;;; emmet-mode
+;;
+(add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
+
+;;; coffee-mode
+;;
+(custom-set-variables '(coffee-tab-width 2))
 
 (setq inhibit-startup-screen t)
 ;;; init.el ends here
