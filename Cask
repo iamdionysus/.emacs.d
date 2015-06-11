@@ -1,6 +1,9 @@
 (source melpa)
 (source gnu)
 
+(depends-on "helm")
+(depends-on "helm-projectile")
+(depends-on "async")
 (depends-on "flycheck")
 (depends-on "smex")
 (depends-on "projectile")
@@ -20,4 +23,4 @@
 (depends-on "robe")
 (depends-on "ruby-tools")
 (depends-on "inf-ruby")
-
+(depends-on "init-loader")
