@@ -14,7 +14,7 @@
 
 ;;; smex
 ;;
-(global-set-key (kbd "C-x C-m") 'smex)
+;; (global-set-key (kbd "C-x C-m") 'smex)
 
 
 

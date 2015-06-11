@@ -23,10 +23,11 @@
 (global-set-key (kbd "C-M-u") 'enlarge-window)
 (global-set-key (kbd "C-M-y") 'shrink-window)
 
-;;; load-bookmarklist
-;;
-(global-set-key (kbd "C-x C-l") 'bookmark-bmenu-list)
 
-;;; eval-last-sexp
+;;; easy lisp
 ;;
 (global-set-key (kbd "C-x e") 'eval-last-sexp)
+
+;;; select all
+;;
+(global-set-key (kbd "C-x C-x") 'mark-whole-buffer)

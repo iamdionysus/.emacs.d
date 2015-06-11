@@ -1,8 +1,12 @@
 ;;; helm
 ;;
 (require 'helm-config)
-
-
+(setq helm-M-x-fuzzy-match t)
+(global-set-key (kbd "C-x m") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-m") 'helm-M-x)
+(global-set-key (kbd "C-x h") 'helm-apropos)
+		
 ;;; projectile
 ;;
 (projectile-global-mode)
