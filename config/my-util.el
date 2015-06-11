@@ -10,8 +10,7 @@
 	("C-c <left>" . buf-move-left)
 	("C-c <right>" . buf-move-right)
 	)
-  :ensure t
-)
+  :ensure t)
 
 
 ;;; dired moving to parent directory without opening a new buffer
@@ -42,6 +41,7 @@
 (use-package projectile
   :init
   (progn
+    (setq projectile-file-exists-remote-cache-expire nil)    
     (projectile-global-mode)
     (setq projectile-indexing-method 'alien))
   :ensure t)
@@ -79,4 +79,9 @@
 
 ;;; ace-jump-mode
 (use-package ace-jump-mode
+  :ensure t)
+
+;;; workgroups2
+;;
+(use-package workgroups2
   :ensure t)

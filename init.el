@@ -53,5 +53,6 @@
 ;;   (require 'my-ocaml))
 
 (setq inhibit-startup-screen t)
+(workgroups-mode t)
 ;;; init.el ends here
 

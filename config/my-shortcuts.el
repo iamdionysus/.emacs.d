@@ -58,6 +58,10 @@
     (global-set-key (kbd "C-c C-l") 'term-line-mode)))
 
 (global-set-key (kbd "C-x C-SPC") 'ace-jump-mode)
+;; (global-set-key (kbd "C-x C-x") 'persp-remove-buffer)
+(global-set-key (kbd "C-c [") 'wg-switch-to-workgroup-left)
+(global-set-key (kbd "C-c ]") 'wg-switch-to-workgroup-right)
+(global-set-key (kbd "C-x g") 'wg-switch-to-workgroup)
 
 ;;; my-dev
 ;;
