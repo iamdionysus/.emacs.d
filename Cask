@@ -16,3 +16,8 @@
 (depends-on "coffee-mode")
 (depends-on "evil-nerd-commenter")
 (depends-on "json-mode")
+(depends-on "rinari")
+(depends-on "robe")
+(depends-on "ruby-tools")
+(depends-on "inf-ruby")
+
