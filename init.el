@@ -1,4 +1,4 @@
-;;; init.el --- sets my style
+2;;; init.el --- sets my style
 
 ;;; Commentary:
 ;;
@@ -10,18 +10,13 @@
 
 ;;; el-get settings
 ;;
-;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(require 'el-get)
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
-;; (unless (require 'el-get nil 'noerror)
-;;   (with-current-buffer
-;;       (url-retrieve-synchronously
-;;        "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-;;     (goto-char (point-max))
-;;     (eval-print-last-sexp)))
-
-;; (add-to-list 'el-get-recipe-path "~/.emacs.d/recipes")
-;; (setq el-get-verbose t)
-
+(el-get-bundle flx-ido)
+(el-get-bundle projectile)
+(el-get-bundle evil-nerd-commenter)
 
 ;; (require 'benchmark-init)
 
@@ -207,12 +202,12 @@
 
 ;;; flx-ido
 ;;
-;; (require 'flx-ido)
-;; (ido-mode t)
-; (ido-everywhere t)
-;; (flx-ido-mode t)
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-use-faces nil)
+(require 'flx-ido)
+(ido-mode t)
+ido-everywhere t)
+(flx-ido-mode t)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
 
 ;;; recentf
 ;;
