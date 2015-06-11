@@ -76,7 +76,6 @@
 ;;; ag
 (use-package ag
   :ensure t)
-<<<<<<< HEAD
 
 ;;; ace-jump-mode
 (use-package ace-jump-mode
