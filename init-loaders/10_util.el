@@ -2,21 +2,9 @@
 ;;
 ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;;; flx-ido
+;;; golden-ratio
 ;;
-;; (require 'flx-ido)
-;; (ido-mode t)
-;; (ido-everywhere t)
-;; (flx-ido-mode t)
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-use-faces nil)
-
-
-;;; smex
-;;
-;; (global-set-key (kbd "C-x C-m") 'smex)
-
-
+(golden-ratio-mode t)
 
 ;;; company
 ;;

@@ -1,6 +1,7 @@
 (source melpa)
 (source gnu)
 
+(depends-on "golden-ratio")
 (depends-on "helm")
 (depends-on "helm-projectile")
 (depends-on "async")
