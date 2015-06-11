@@ -10,3 +10,8 @@ el-get/
 .ruby-version
 smex-items
 recentf
+bookmarks
+tramp
+persp-confs/
+.cask/
+ido.last
