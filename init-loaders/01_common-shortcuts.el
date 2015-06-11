@@ -29,4 +29,4 @@
 
 ;;; eval-last-sexp
 ;;
-(global-set-key (kbd "C-x C-j") 'eval-last-sexp)
+(global-set-key (kbd "C-x e") 'eval-last-sexp)
