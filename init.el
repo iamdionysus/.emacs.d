@@ -16,7 +16,6 @@
 
 (el-get-bundle init-loader)
 (el-get-bundle projectile)
-(el-get-bundle evil-nerd-commenter)
 (el-get-bundle init-loader)
 (el-get-bundle golden-ratio)
 (el-get-bundle org)
