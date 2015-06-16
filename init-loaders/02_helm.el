@@ -11,7 +11,7 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-m") 'helm-M-x)
-(global-set-key (kbd "C-x h") 'helm-apropos)
+(global-set-key (kbd "C-x C-h") 'helm-apropos)
 (global-set-key (kbd "C-x p") 'helm-projectile-find-file)
 (global-set-key (kbd "C-x C-p") 'helm-projectile-switch-project)
 (global-set-key (kbd "C-x f") 'helm-occur)
