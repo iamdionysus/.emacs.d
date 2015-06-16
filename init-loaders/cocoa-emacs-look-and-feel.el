@@ -1,0 +1,6 @@
+(tool-bar-mode -1)
+(add-to-list 'initial-frame-alist '(height . 54))
+(add-to-list 'initial-frame-alist '(width . 200))
+(add-to-list 'initial-frame-alist '(left . 0))
+(add-to-list 'initial-frame-alist '(top . 10))
+(set-face-attribute 'default nil :font "Monaco-14")
