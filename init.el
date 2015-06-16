@@ -1,4 +1,4 @@
-2;;; init.el --- sets my style
+;;; init.el --- sets my style
 
 ;;; Commentary:
 ;;
@@ -16,8 +16,6 @@
 
 ;;; essential
 ;;
-(el-get-bundle init-loader)
-(el-get-bundle projectile)
 (el-get-bundle init-loader)
 (el-get-bundle golden-ratio)
 (el-get-bundle org)
