@@ -20,7 +20,6 @@
 (el-get-bundle init-loader)
 (el-get-bundle golden-ratio)
 (el-get-bundle org)
-(el-get-bundle evil-nerd-commenter)
 
 (el-get-bundle projectile)
 (el-get-bundle helm)
