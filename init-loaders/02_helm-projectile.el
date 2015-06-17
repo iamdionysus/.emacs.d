@@ -15,9 +15,11 @@
 (global-set-key (kbd "C-x p") 'helm-projectile-find-file)
 (global-set-key (kbd "C-x C-p") 'helm-projectile-switch-project)
 (global-set-key (kbd "C-x f") 'helm-occur)
+
 ;;; projectile
 ;;
 (projectile-global-mode)
+(setq projectile-file-exists-remote-cache-expire nil) ;; prevents freezing
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 (setq projectile-indexing-method 'alien)
