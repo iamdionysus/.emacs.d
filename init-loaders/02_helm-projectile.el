@@ -22,7 +22,8 @@
 (setq projectile-file-exists-remote-cache-expire nil) ;; prevents freezing
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
-(setq projectile-indexing-method 'alien)
+;; (setq projectile-indexing-method 'alien) ;; prevents freezing in windows
+;; (setq projectile-enable-caching nil)
 
 (global-set-key (kbd "C-x i") 'projectile-invalidate-cache)
 (setq projectile-switch-project-action 'helm-projectile)
