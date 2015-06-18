@@ -6,9 +6,13 @@ auto-save-list/
 *~
 server/
 eshell/
-bookmarks
-recentf
-ido.last
+el-get/
+.ruby-version
 smex-items
+recentf
+bookmarks
 tramp
 persp-confs/
+.cask/
+ido.last
+el-get/

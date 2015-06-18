@@ -8,51 +8,50 @@
 
 ;;; Code:
 
-
-
-;;; MELPA settgins
+;;; el-get settings
 ;;
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
-;; (require 'benchmark-init)
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(require 'el-get)
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
-;;; Commonn-lisp compatibility
+;;; essential
 ;;
-(with-no-warnings
-  (require 'cl))
+(el-get-bundle init-loader)
+(el-get-bundle golden-ratio)
+(el-get-bundle org)
+(el-get-bundle elpa:evil-nerd-commenter)
 
-;;; personal settings
+(el-get-bundle projectile)
+(el-get-bundle helm)
+(el-get-bundle helm-projectile)
+
+(el-get-bundle company)
+(el-get-bundle ag)
+(el-get-bundle elpa:flycheck)
+
+;;; modes
 ;;
-(load-theme 'wombat)
-(split-window-right)
-(setq create-lockfiles nil) ;; solve broccoli issue which bothers ember-cli
-(setq auto-save-visited-file-name t)
-(setq backup-directory-alist
-      '(("" . "~/.emacs.d/emacs-backup")))
-(add-to-list 'load-path "~/.emacs.d/config")
-(require 'my-shortcuts)
-(require 'my-look-and-feel)
+(el-get-bundle scala-mode2)
+(el-get-bundle web-mode)
+(el-get-bundle emmet-mode)
+(el-get-bundle markdown-mode)
+(el-get-bundle yaml-mode)
+(el-get-bundle coffee-mode)
+(el-get-bundle json-mode)
 
-;;; require use-package
+;;; clojure
 ;;
-(eval-when-compile
-  (require 'use-package))
+(el-get-bundle cider)
 
-;;; package settings
+;;; ruby
 ;;
-(require 'my-util)
-(require 'my-dev)
-(require 'my-ruby)
+(el-get-bundle elpa:rinari)
+(el-get-bundle robe)
+(el-get-bundle ruby-tools)
+(el-get-bundle inf-ruby)
 
-(if (eq system-type 'windows-nt)
-    (setq w32-get-true-file-attributes nil))
+(require 'init-loader)
+(custom-set-variables '(init-loader-show-log-after-init 'error-only))
+(init-loader-load "~/.emacs.d/init-loaders")
 
-;; (unless (eq system-type 'windows-nt)
-;;   (require 'my-ocaml))
-
-(setq inhibit-startup-screen t)
-(workgroups-mode t)
 ;;; init.el ends here
-
