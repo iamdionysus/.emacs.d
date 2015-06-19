@@ -39,3 +39,7 @@
 ;; (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
 (global-set-key (kbd "C-M-;") 'evilnc-comment-or-uncomment-paragraphs)
 
+;;; elisp-slime-nav
+;;
+(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+  (add-hook hook 'turn-on-elisp-slime-nav-mode))

@@ -15,6 +15,7 @@
 (depends-on "company")
 (depends-on "ag")
 (depends-on "flycheck")
+(depends-on "elisp-slime-nav")
 
 ;;; modes
 ;;
