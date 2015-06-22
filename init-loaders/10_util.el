@@ -6,6 +6,14 @@
 ;;
 (golden-ratio-mode t)
 
+;;; powerline
+;;
+(powerline-default-theme)
+
+;;; indent-guide
+;;
+(indent-guide-global-mode)
+
 ;;; company
 ;;
 (add-hook 'after-init-hook 'global-company-mode)

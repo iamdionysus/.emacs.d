@@ -19,17 +19,14 @@
     (setq file-name-from buffer-file-name)
     (save-buffer)
     (inf-ruby)
-    (ruby-load-file file-name-from)
-  )
-)
+    (ruby-load-file file-name-from)))
 
 (defun toggle-breakpoint()
   "toggle breakpoint via binding.pry"
   (interactive)
   (beginning-of-line)
   (insert "binding.pry")
-  (newline)
-)
+  (newline))
 
 (defun delete-all-breakpoint()
   "delete all breakpoint as binding.pry"
@@ -38,9 +35,7 @@
     (setq pos-from (point))
     (beginning-of-buffer)
     (delete-matching-lines "binding.pry")
-    (goto-char pos-from)
-  )
-)
+    (goto-char pos-from)))
 
 ;; ("<f2>" . inf-ruby)
 ;; ("<f5>" . inf-ruby-and-load-file)

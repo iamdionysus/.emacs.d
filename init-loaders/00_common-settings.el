@@ -18,8 +18,8 @@
 (setq auto-save-visited-file-name t)
 (setq backup-directory-alist
       '(("" . "~/.emacs.d/emacs-backup")))
-(add-to-list 'load-path "~/.emacs.d/config")
 
 (electric-pair-mode t)
 (show-paren-mode t)
 (setq blink-matching-paren nil)
+

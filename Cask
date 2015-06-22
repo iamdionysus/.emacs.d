@@ -8,7 +8,7 @@
 (depends-on "org")
 (depends-on "evil-nerd-commenter")
 
-(depends-on "projectile" :git "https://github.com/iamdionysus/projectile")
+(depends-on "projectile")
 (depends-on "helm")
 (depends-on "helm-projectile")
 
@@ -16,6 +16,13 @@
 (depends-on "ag")
 (depends-on "flycheck")
 (depends-on "elisp-slime-nav")
+
+;;; test
+;;
+;; (depends-on "switch-window") ;; not bad but not working great with golden-ratio
+(depends-on "git-timemachine")
+(depends-on "powerline")
+(depends-on "indent-guide")
 
 ;;; modes
 ;;
