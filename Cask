@@ -13,7 +13,6 @@
 (depends-on "helm-projectile")
 
 (depends-on "company")
-(depends-on "ag")
 (depends-on "flycheck")
 (depends-on "elisp-slime-nav")
 
@@ -25,6 +24,7 @@
 (depends-on "indent-guide")
 (depends-on "discover-my-major")
 (depends-on "multiple-cursors")
+(depends-on "helm-ag")
 
 ;;; modes
 ;;
