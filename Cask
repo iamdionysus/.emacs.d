@@ -32,7 +32,6 @@
 (depends-on "direx")
 (depends-on "discover-my-major")
 (depends-on "multiple-cursors")
-(depends-on "yasnippet")
 
 ;;; modes
 ;;
