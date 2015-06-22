@@ -2,17 +2,15 @@
 ;;
 ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;;; golden-ratio
+;;; better look and feel
 ;;
 (golden-ratio-mode t)
-
-;;; powerline
-;;
 (powerline-default-theme)
-
-;;; indent-guide
-;;
 (indent-guide-global-mode)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;;; direx
+(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
 
 ;;; multiple-cursors
 ;;
