@@ -23,6 +23,8 @@
 (depends-on "git-timemachine")
 (depends-on "powerline")
 (depends-on "indent-guide")
+(depends-on "discover-my-major")
+(depends-on "multiple-cursors")
 
 ;;; modes
 ;;
@@ -44,3 +46,4 @@
 (depends-on "robe")
 (depends-on "ruby-tools")
 (depends-on "inf-ruby")
+(depends-on "rspec-mode")
