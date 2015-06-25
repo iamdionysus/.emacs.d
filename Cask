@@ -8,7 +8,7 @@
 (depends-on "org")
 (depends-on "evil-nerd-commenter")
 
-(depends-on "projectile" :git "https://github.com/iamdionysus/projectile")
+(depends-on "projectile")
 (depends-on "helm")
 (depends-on "helm-projectile")
 
