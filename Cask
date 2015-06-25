@@ -11,11 +11,27 @@
 (depends-on "projectile")
 (depends-on "helm")
 (depends-on "helm-projectile")
+(depends-on "helm-ag")
 
 (depends-on "company")
-(depends-on "ag")
 (depends-on "flycheck")
 (depends-on "elisp-slime-nav")
+
+;;; git tools
+(depends-on "git-timemachine")
+(depends-on "git-gutter")
+
+;;; look and feel
+;;
+(depends-on "monokai-theme")
+(depends-on "powerline")
+(depends-on "indent-guide")
+
+;;; util
+;; (depends-on "switch-window") ;; not bad but not working great with golden-ratio
+(depends-on "direx")
+(depends-on "discover-my-major")
+(depends-on "multiple-cursors")
 
 ;;; modes
 ;;
@@ -37,3 +53,4 @@
 (depends-on "robe")
 (depends-on "ruby-tools")
 (depends-on "inf-ruby")
+(depends-on "rspec-mode")

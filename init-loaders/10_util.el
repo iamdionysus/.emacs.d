@@ -2,9 +2,21 @@
 ;;
 ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;;; golden-ratio
+;;; better look and feel
 ;;
 (golden-ratio-mode t)
+(powerline-default-theme)
+(indent-guide-global-mode)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;;; direx
+(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
+
+;;; multiple-cursors
+;;
+(global-set-key (kbd "C-.") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-.") 'mc/mark-all-like-this)
 
 ;;; company
 ;;
