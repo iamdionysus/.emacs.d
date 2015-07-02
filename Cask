@@ -16,6 +16,7 @@
 (depends-on "company")
 (depends-on "flycheck")
 (depends-on "elisp-slime-nav")
+(depends-on "rainbow-delimiters")
 
 ;;; git tools
 (depends-on "git-timemachine")
