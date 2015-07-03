@@ -15,10 +15,6 @@
 
 (eval-when-compile
   (require 'use-package))
-;; (if (eq system-type 'darwin)
-;;     (require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
-;;   (require 'cask "~/.cask/cask.el"))
-;; (cask-initialize)
 
 (require 'init-loader)
 (custom-set-variables '(init-loader-show-log-after-init 'error-only))
