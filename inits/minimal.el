@@ -1,20 +1,18 @@
 ;;; Commonn-lisp compatibility
 ;;
-;; (with-no-warnings (require 'cl))
-
-(eval-when-compile (require 'cl))
+(with-no-warnings
+  (require 'cl))
 
 ;;; personal settings
 ;;
+(tool-bar-mode -1) ;; no tool bar
 (setq inhibit-startup-screen t)
-
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-
+(if (eq system-type 'windows-nt)
+    (setq w32-get-true-file-attributes nil))
+(menu-bar-mode -1) ;; no menu bar
 (setq compilation-scroll-output t)  ;; automatically go to bottom of the compilation buffer
 (column-number-mode t)
 (global-auto-revert-mode t) ;; refresh buffer when file changed
-
 (split-window-right)
 (setq create-lockfiles nil) ;; solve broccoli issue which bothers ember-cli
 (setq auto-save-visited-file-name t)
@@ -24,3 +22,5 @@
 (electric-pair-mode t)
 (show-paren-mode t)
 (setq blink-matching-paren nil)
+
+(el-init-provide)
