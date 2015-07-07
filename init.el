@@ -17,7 +17,9 @@
   (require 'use-package))
 
 (require 'init-loader)
-(custom-set-variables '(init-loader-show-log-after-init 'error-only))
+(custom-set-variables
+ '(init-loader-show-log-after-init (quote error-only))
+ '(magit-commit-arguments (quote ("--all"))))
 (init-loader-load "~/.emacs.d/init-loaders")
 
 ;;; init.el ends here

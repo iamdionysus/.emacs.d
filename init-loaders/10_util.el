@@ -32,4 +32,6 @@
 	 ("C-M-;" . evilnc-comment-or-uncomment-paragraphs)))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind (("C-x g" . magit-dispatch-popup)
+	 ("C-x C-g" . magit-status)))
