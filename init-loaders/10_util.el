@@ -30,3 +30,6 @@
   :bind (("M-;" . comment-or-uncomment-line-and-forward-line)
 	 ("C-c C-k" . comment-or-uncomment-line-and-forward-line)
 	 ("C-M-;" . evilnc-comment-or-uncomment-paragraphs)))
+
+(use-package magit
+  :ensure t)
