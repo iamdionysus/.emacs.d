@@ -29,7 +29,7 @@
 
 ;;; select all
 ;;
-;; (global-set-key (kbd "C-x C-x") 'mark-whole-buffer)
+(global-set-key (kbd "C-x C-x") 'mark-whole-buffer)
 
 ;;; move line up and down
 ;;
