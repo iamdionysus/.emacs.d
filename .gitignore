@@ -16,3 +16,4 @@ persp-confs/
 .cask/
 ido.last
 el-get/
+.mc-lists.el
