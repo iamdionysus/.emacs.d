@@ -7,6 +7,7 @@
 ;;; personal settings
 ;;
 (setq inhibit-startup-screen t)
+(setq-default cursor-type 'bar)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)

@@ -1,3 +1,4 @@
+(server-start)
 (if (eq system-type 'windows-nt)
     (setq w32-get-true-file-attributes nil))
 

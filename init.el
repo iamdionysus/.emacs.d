@@ -22,4 +22,5 @@
  '(magit-commit-arguments (quote ("--all"))))
 (init-loader-load "~/.emacs.d/init-loaders")
 
+
 ;;; init.el ends here
