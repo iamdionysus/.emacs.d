@@ -6,6 +6,7 @@ M-x package-install for use-package, init-loader
 #### running emacs
 * emacs folder to path
 * emacs shortcut executing `emacsclientw.exe --alternate-editor=runemacs.exe -c`
+* (server-start) should be there
 
 #### powershell
 * regedit HKEY\_CLASSES\_ROOT for Directory/Background/Shell and Directory/Shell
