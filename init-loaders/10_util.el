@@ -35,3 +35,9 @@
   :ensure t
   :bind (("C-x g" . magit-dispatch-popup)
 	 ("C-x C-g" . magit-status)))
+
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper)
+	 ("C-r" . swiper)
+	 ("C-c C-r" . ivy-resume)))
