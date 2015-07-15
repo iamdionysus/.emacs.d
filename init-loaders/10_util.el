@@ -34,7 +34,7 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-dispatch-popup)
-	 ("C-x C-g" . magit-status)))
+	 ("C-x s" . magit-status)))
 
 (use-package swiper
   :ensure t

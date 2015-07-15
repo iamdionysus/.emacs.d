@@ -11,3 +11,9 @@
 (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
 (setq ispell-program-name "aspell")
 (setq ispell-personal-dictionary "C:/Program Files (x86)/Aspell/dict")
+
+(use-package powershell
+  :defer t
+  :ensure t
+  :init
+  (setq powershell-indent 2))
