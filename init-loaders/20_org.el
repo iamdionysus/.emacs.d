@@ -4,7 +4,8 @@
   :init
   (setq org-src-fontify-natively t)
   (setq org-log-done 'time)
-  (setq org-return-follows-link t))
+  (setq org-return-follows-link t)
+  (setq org-export-with-toc nil))
 
 ;; (eval-after-load 'org
 ;;   '(progn

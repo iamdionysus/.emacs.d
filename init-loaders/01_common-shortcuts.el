@@ -23,6 +23,10 @@
 (global-set-key (kbd "C-M-u") 'enlarge-window)
 (global-set-key (kbd "C-M-y") 'shrink-window)
 
+;;; ispell
+;;
+(global-set-key (kbd "M-$") 'ispell)
+
 ;;; easy lisp
 ;;
 (global-set-key (kbd "C-x e") 'eval-last-sexp)

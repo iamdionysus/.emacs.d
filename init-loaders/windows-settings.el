@@ -17,3 +17,6 @@
   :ensure t
   :init
   (setq powershell-indent 2))
+
+;; (setq explicit-shell-file-name "c:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe")
+;; (setq explicit-powershell.exe-args '("-Command" "-" ))

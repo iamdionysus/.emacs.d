@@ -41,3 +41,8 @@
   :bind (("C-s" . swiper)
 	 ("C-r" . swiper)
 	 ("C-c C-r" . ivy-resume)))
+
+(use-package edit-server
+  :ensure t
+  :config
+  (edit-server-start))
