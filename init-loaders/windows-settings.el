@@ -29,3 +29,8 @@
   :ensure t
   :init
   (setq powershell-indent 2))
+
+(use-package golden-ratio
+  :ensure t
+  :config (golden-ratio-mode t))
+
