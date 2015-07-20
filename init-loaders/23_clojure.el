@@ -18,3 +18,6 @@
 			    (cider-eval-print-handler))))
 
 (global-set-key (kbd "C-x e") 'cider-eval-last-sexp-and-make-example)
+
+(add-to-list 'interpreter-mode-alist
+	     '("lein-exec" . clojure-mode))
