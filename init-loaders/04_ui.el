@@ -1,3 +1,6 @@
+(use-package golden-ratio
+  :ensure t
+  :config (golden-ratio-mode t))
 
 (use-package powerline
   :ensure t
